@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'account',
     'as' => 'customer.',
-    'middleware' => ['auth:customer'],
+    'middleware' => ['auth:user'],
 ], function () {
     Route::get('/profile', \App\Http\Livewire\Customer\Profile\ProfileManager::class)->name('profile');
     Route::get('/orders', \App\Http\Livewire\Customer\Order\OrderList::class)->name('orders.list');

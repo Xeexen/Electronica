@@ -31,7 +31,7 @@ class PersonalInformation extends Component
     {
         $this->validate([
             'state.name' => ['required'],
-            'state.email' => ['required', 'email', Rule::unique('customers', 'email')->ignore($this->user->id)],
+            'state.email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->user->id)],
         ]);
 
         $this->user->update([
