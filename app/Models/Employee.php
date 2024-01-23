@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable implements HasMedia, BannableInterface
+class Employee extends Authenticatable implements HasMedia, BannableInterface
 {
     use HasFactory;
     use Notifiable;
@@ -26,6 +26,8 @@ class User extends Authenticatable implements HasMedia, BannableInterface
         'name',
         'email',
         'password',
+        'bio',
+        'website',
     ];
 
     /**

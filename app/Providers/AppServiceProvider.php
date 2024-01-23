@@ -71,6 +71,16 @@ class AppServiceProvider extends ServiceProvider
             $this->dispatchBrowserEvent('notify', $message);
         });
 
+        Livewire::component('setup.wizard', \App\Http\Livewire\Setup\Wizard::class);
+
+        Livewire::component('setup.license-activation', \App\Http\Livewire\Setup\LicenseActivationStep::class);
+
+        Livewire::component('setup.store-information', \App\Http\Livewire\Setup\StoreInformationStep::class);
+
+        Livewire::component('setup.administrator-account', \App\Http\Livewire\Setup\AdministratorAccountStep::class);
+
+        Livewire::component('setup.finalization', \App\Http\Livewire\Setup\FinalizationStep::class);
+
         View::share('generalSettings', app(GeneralSetting::class));
 
         View::share('brandSettings', app(BrandSetting::class));

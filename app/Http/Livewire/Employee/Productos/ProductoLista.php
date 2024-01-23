@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Productos;
+namespace App\Http\Livewire\Employee\Productos;
 
 use Livewire\Component;
 use App\Models\Producto;
 
-class ProductoShow extends Component
+class ProductoLista extends Component
 {
     public $productos;
-    
+
     public function mount()
     {
         $this->productos = Producto::all();
     }
 
-
     public function render()
     {
-        return view('livewire.productos.producto-show');
+        return view('livewire.employee.productos.producto-lista')->layout('layouts.admin');
     }
 }

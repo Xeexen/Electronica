@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Customer::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Order::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->unsignedTinyInteger('rating')->default(5);

@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Database\Seeders\CiudadSeeder;
+use Database\Seeders\ProvinciasSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,14 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert(
-            [
-                'name' => 'Andres Masapanta',
-                'email' => 'masapantaandres@gmail.com',
-                'password' => Hash::make('contraseña'),
-                'is_admin' => true,
-                'website' => 'andres.electronica.test',
-            ]
-        );
+        $this->call(CiudadSeeder::class);
     }
 }

@@ -7,11 +7,11 @@
     <!-- Page title & actions -->
     <div class="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div class="flex items-center flex-1 min-w-0 space-x-2">
-            <a href="{{ route('productos-list') }}" class="btn btn-default btn-xs">
+            <a href="{{ route('employee.productos') }}" class="btn btn-default btn-xs">
                 <x-heroicon-m-arrow-left class="w-5 h-5" />
             </a>
             <h1 class="text-2xl font-medium truncate text-slate-900 dark:text-slate-100">
-                Nuevo Producto
+                Editar Producto
             </h1>
             {{-- <x-badge :type="$product->is_active ? 'success' : 'default'">
                 {{ $product->status->label() }}
@@ -111,7 +111,7 @@
                                 <div class="flex items-center justify-end">
                                     <button wire:target="save" wire:loading.delay.attr="disabled" type="submit"
                                         class="btn btn-primary">
-                                        {{ __('Save changes') }}
+                                        {{ __('Guardar Cambios') }}
                                     </button>
                                 </div>
                             </x-slot:footer>
