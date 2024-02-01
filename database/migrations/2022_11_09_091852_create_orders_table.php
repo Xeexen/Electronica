@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id()->startingValue(1001);
-            $table->foreignIdFor(\App\Models\User::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Customer::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('customer_email')->nullable();
             $table->string('customer_phone')->nullable();
             $table->string('order_status')->default(\App\Enums\OrderStatus::OPEN->name);

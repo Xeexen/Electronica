@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Productos;
+namespace App\Http\Livewire\Employee\Productos;
 
-use Exception;
 use Livewire\Component;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Log;
 
-class ProductoCreate extends Component
+class ProductoCrear extends Component
 {
     public $nombre, $descripcion, $codigo, $categoria, $subcategoria, $precio, $impuesto;
     public $categorias, $subcategorias;
@@ -24,10 +23,7 @@ class ProductoCreate extends Component
 
     public function mount()
     {
-        try {
-        } catch (Exception $e) {
-            Log::error('message', $e->getMessage());
-        }
+       
     }
 
     public function save()
@@ -43,8 +39,9 @@ class ProductoCreate extends Component
             'impuesto' => $this->impuesto
         ]);
     }
+
     public function render()
     {
-        return view('livewire.productos.producto-create');
+        return view('livewire.employee.productos.producto-crear')->layout('layouts.admin');
     }
 }

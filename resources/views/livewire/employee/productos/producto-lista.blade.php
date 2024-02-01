@@ -31,20 +31,20 @@
                         <x-heroicon-o-tag class="w-12 h-12 mx-auto text-slate-400" />
 
                         <h3 class="mt-2 text-lg font-medium text-slate-900 dark:text-slate-200">
-                            {{ __('First up: what are you selling?') }}
+                            {{ __('¿Que vamos a vender?') }}
                         </h3>
 
                         <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                            {{ __('Before you open your store, first you need some products.') }}
+                            {{ __('Antes de empezar necesitamos agregar productos') }}
                         </p>
 
                         <div class="mt-6">
                             <a
-                            href="{{route('producto-crear')}}"
+                            href="{{route('employee.producto.crear')}}"
                                 class="btn btn-primary"
                             >
                                 <x-heroicon-m-plus class="w-5 h-5 mr-2 -ml-1" />
-                                {{ __('Add your products') }}
+                                {{ __('Añadir Productos') }}
                             </a>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                                         </div>
                                                         <div class="ml-4">
                                                             <a
-                                                                href="{{ route('producto-edit', $product->id) }}"
+                                                                href="{{ route('employee.producto.editar', $product->id) }}"
                                                                 class="inline-flex items-center truncate hover:text-sky-600 dark:hover:text-sky-400"
                                                             >
                                                                 <span>{{ $product->nombre }}</span>
@@ -166,7 +166,7 @@
                                                     </x-badge>
                                                 </td>
                                                 <td class="py-4 pl-3 pr-4 text-sm text-left text-slate-500 whitespace-nowrap sm:pr-6 dark:text-slate-400">
-                                                    {{ __(':count in stock', ['count' => $product->variants_sum_stock_value]) }}
+                                                    {{ __(':unidades en stock', ['count' => $product->variants_sum_stock_value]) }}
                                                 </td>
                                             </tr>
                                         @empty
@@ -178,10 +178,10 @@
                                                     <div class="max-w-lg mx-auto text-center">
                                                         <x-heroicon-o-magnifying-glass class="inline-block w-10 h-10 text-slate-400 dark:text-slate-300" />
                                                         <h3 class="mt-2 text-sm font-medium text-slate-900 dark:text-slate-200">
-                                                            {{ __('No products found') }}
+                                                            {{ __('No existen Productos') }}
                                                         </h3>
                                                         <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                            {{ __('Try changing the filters or search term') }}
+                                                            {{ __('Prueba cambiando los filstros') }}
                                                         </p>
                                                     </div>
                                                 </td>

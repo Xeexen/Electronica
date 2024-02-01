@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire\Employee;
 
-use DatePeriod;
-use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Order;
-use App\Models\Product;
-use Livewire\Component;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
+use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use DatePeriod;
+use Livewire\Component;
 
 class Dashboard extends Component
 {
@@ -105,7 +104,7 @@ class Dashboard extends Component
 
     public function getCustomersCountProperty()
     {
-        return User::query()->whereBetween('created_at', [Carbon::now()->subDays($this->periods)->startOfDay(), Carbon::now()->endOfDay()])->count();
+        return Customer::query()->whereBetween('created_at', [Carbon::now()->subDays($this->periods)->startOfDay(), Carbon::now()->endOfDay()])->count();
     }
 
     public function getDailyCustomersProperty()

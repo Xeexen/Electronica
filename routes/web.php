@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['as' => 'guest.'], function () {
+Route::group(['as' => 'guest.', 'middleware' => \App\Http\Middleware\RedirectIfNotSetup::class], function () {
     Route::get('/', \App\Http\Livewire\Guest\Welcome::class)->name('welcome');
     Route::get('/collections', \App\Http\Livewire\Guest\CollectionList::class)->name('collections.list');
     Route::get('/collections/{collection}', \App\Http\Livewire\Guest\CollectionDetail::class)->name('collections.detail');
@@ -29,6 +29,7 @@ Route::group(['as' => 'guest.'], function () {
     Route::get('/pages/{page:slug}', \App\Http\Livewire\Guest\PageDetail::class)->name('pages.detail');
 });
 
+Route::get('/setup', \App\Http\Livewire\Setup\Setup::class)->middleware(\App\Http\Middleware\RedirectIfSetupFinished::class)->name('setup');
 
 Route::webhooks('webhooks/razorpay', 'razorpay');
 Route::stripeWebhooks('webhooks/stripe');

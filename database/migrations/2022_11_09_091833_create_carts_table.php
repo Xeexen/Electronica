@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->string('session_id')->nullable();
-            $table->foreignIdFor(\App\Models\User::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Customer::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('customer_email')->nullable();
             $table->string('payment_method')->nullable();
             $table->foreignIdFor(\App\Models\ShippingZoneRate::class, 'shipping_method')->nullable()->constrained('shipping_zone_rates')->nullOnDelete();

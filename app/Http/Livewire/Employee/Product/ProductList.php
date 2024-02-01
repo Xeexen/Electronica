@@ -30,16 +30,16 @@ class ProductList extends Component
         $this->clearSelection();
     }
 
-    // public function newProduct()
-    // {
-    //     $product = new Product();
+    public function newProduct()
+    {
+        $product = new Product();
 
-    //     $product->name = 'New product';
+        $product->name = 'New product';
 
-    //     $product->save();
+        $product->save();
 
-    //     $this->redirect(route('employee.products.detail', $product));
-    // }
+        $this->redirect(route('employee.products.detail', $product));
+    }
 
     public function getRowsQueryProperty()
     {
