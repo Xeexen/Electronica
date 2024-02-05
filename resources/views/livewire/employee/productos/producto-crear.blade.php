@@ -13,16 +13,9 @@
             <h1 class="text-2xl font-medium truncate text-slate-900 dark:text-slate-100">
                 Nuevo Producto
             </h1>
-            {{-- <x-badge :type="$product->is_active ? 'success' : 'default'">
-                {{ $product->status->label() }}
-            </x-badge> --}}
+
         </div>
-        {{-- <div class="flex mt-4 sm:mt-0 sm:ml-4">
-            <a href="{{ route('guest.products.detail', $product) }}" target="_blank"
-                class="w-full btn btn-outline-primary">
-                {{ __('Preview') }}
-            </a>
-        </div> --}}
+
     </div>
 
     <!-- Page content -->
@@ -37,41 +30,54 @@
                                     class="grid grid-cols-1 gap-6">
                                     {{-- Name --}}
                                     <div>
-                                        <x-input-label for="name" :value="__('Name')" />
+                                        <x-input-label for="name" :value="__('Nombre')" />
 
-                                        <x-input wire:model.lazy="nombre" type="text" id="name"
+                                        <x-input wire:model.defer="producto.nombre" type="text" id="name"
                                             class="block w-full mt-1 sm:text-sm"
-                                            :placeholder="__('Enter product name')" />
+                                            :placeholder="__('Ingresa el nombre')" />
+
+                                        <x-input-error for="nombre" class="mt-2" />
+                                    </div>
+
+                                    <div>
+                                        <x-input-label for="name" :value="__('Codigo')" />
+
+                                        <x-input wire:model.defer="producto.codigo" type="text" id="name"
+                                            class="block w-full mt-1 sm:text-sm"
+                                            :placeholder="__('Ingresa el codigo')" />
 
                                         <x-input-error for="nombre" class="mt-2" />
                                     </div>
 
                                     {{-- Price --}}
                                     <div>
-                                        <x-input-label for="price" :value="__('Price')" />
+                                        <x-input-label for="price" :value="__('Precio')" />
 
-                                        <x-input-money type="text" id="price" wire.model.lazy="precio"
+                                        <x-input-money type="text" id="price" wire:model.defer="producto.precio"
                                             placeholder="0.00" class="block w-full sm:text-sm" wrapper-classes="mt-1" />
 
                                         <x-input-error for="precio" class="mt-2" />
                                     </div>
 
                                     <div>
-                                        <x-input-label for="excerpt" :value="__('Excerpt')" />
+                                        <x-input-label for="excerpt" :value="__('Impuesto')" />
 
-                                        <x-textarea wire:model.defer="impuesto" id="excerpt"
+                                        <x-select id="excerpt" wire:model.defer="producto.impuesto"
                                             class="block w-full mt-1 sm:text-sm" rows="3"
-                                            :placeholder="__('Enter product excerpt')" />
-
+                                            :placeholder="__('Enter product excerpt')">
+                                            <option value="">{{ __('Seleccione') }}</option>
+                                            <option value="0.12">{{ __('12%') }}</option>
+                                            <option value="0.00">{{ __('0%') }}</option>
+                                        </x-select>
                                         <x-input-error for="impuesto" class="mt-2" />
                                     </div>
                                     <div>
                                         <x-input-label for="categoria" :value="__('Categoria')" />
 
-                                        <x-select wire:model.defer="categoria" id="categoria"
+                                        <x-select wire:model.defer="producto.categoria" id="categoria"
                                             class="block w-full mt-1 sm:text-sm">
                                             <option value="">{{ __('Selecione la Categoria') }}</option>
-                                            <option value="">Coito</option>
+                                            <option value="categoria">Coito</option>
                                         </x-select>
 
                                         <x-input-error for="subcategoria" class="mt-2" />
@@ -79,10 +85,10 @@
                                     <div>
                                         <x-input-label for="subcategoria" :value="__('Subcategoria')" />
 
-                                        <x-select wire:model.defer="subcategoria" id="subcategoria"
+                                        <x-select wire:model.defer="producto.subcategoria" id="subcategoria"
                                             class="block w-full mt-1 sm:text-sm">
                                             <option value="">{{ __('Selecione la Subcategoria') }}</option>
-                                            <option value="">Coito</option>
+                                            <option value="subcategoria">Coito</option>
                                         </x-select>
 
                                         <x-input-error for="categoria" class="mt-2" />
@@ -91,7 +97,7 @@
                                         <x-input-label for="imagen" :value="__('Subir Imagen')" />
                                         <x-input
                                             class="relative inline-flex items-center px-4 py-2 text-sm font-medium bg-white border rounded-l-md border-slate-300 text-slate-700 hover:bg-slate-50 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-slate-700 dark:border-slate-500 dark:text-slate-200 dark:focus:ring-sky-400 dark:focus:border-sky-400 dark:hover:border-slate-400 dark:focus:ring-offset-slate-800"
-                                            wire:model="imagen" type="file" />
+                                            wire:model.defer="imagen" type="file" />
                                     </div>
                                     {{-- Description --}}
                                     <div>
@@ -99,8 +105,8 @@
 
                                         <div
                                             class="px-4 mt-1 border rounded-md shadow-sm border-slate-300 dark:border-white/10 dark:bg-white/5">
-                                            <x-tiptap wire:target="save" wire:loading.delay.class="opacity-50"
-                                                wire:model.defer="descripcion" />
+                                            <x-tiptap wire:loading.delay.class="opacity-50"
+                                                wire:model.defer="producto.descripcion" />
                                         </div>
 
                                         <x-input-error for="descripcion" class="mt-2" />
@@ -111,103 +117,12 @@
                                 <div class="flex items-center justify-end">
                                     <button wire:target="save" wire:loading.delay.attr="disabled" type="submit"
                                         class="btn btn-primary">
-                                        {{ __('Save changes') }}
+                                        {{ __('Guardar') }}
                                     </button>
                                 </div>
                             </x-slot:footer>
                         </x-card>
                     </form>
-
-                    <div x-data="{ addFromURL: false, selectedImage: null }"
-                        x-on:upload-image-success.window="addFromURL = false; selectedImage = $event.detail.imageId;">
-                        <x-modal-dialog wire:model.defer="showImageModal">
-                            <x-slot:title>
-                                {{ __('Media') }}
-                            </x-slot:title>
-                            <x-slot:content>
-                                <div x-show="!addFromURL" x-transition:enter.duration.150ms
-                                    x-transition:leave.duration.50ms>
-                                    <div class="inline-flex rounded-md">
-
-                                        <div class="relative block -ml-px">
-                                            <x-dropdown align="left">
-                                                <x-slot:trigger>
-                                                    <button type="button"
-                                                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium bg-white border rounded-r-md border-slate-300 text-slate-500 hover:bg-slate-50 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-slate-700 dark:border-slate-500 dark:text-slate-200 dark:focus:ring-sky-400 dark:focus:border-sky-400 dark:hover:border-slate-400 dark:focus:ring-offset-slate-800">
-                                                        <span class="sr-only">
-                                                            {{ __('Open options') }}
-                                                        </span>
-                                                        <x-heroicon-m-chevron-down class="w-5 h-5" />
-                                                    </button>
-                                                </x-slot:trigger>
-                                                <x-slot:content>
-                                                    <x-dropdown-link x-on:click="addFromURL = !addFromURL"
-                                                        role="button">
-                                                        {{ __('Add from URL') }}
-                                                    </x-dropdown-link>
-                                                </x-slot:content>
-                                            </x-dropdown>
-                                        </div>
-                                        <button x-show="selectedImage"
-                                            x-on:click.prevent="if(confirm('{{ __('Are you sure you want to delete this image?') }}')) $wire.deleteImage(selectedImage); selectedImage = null;"
-                                            type="button" class="ml-4 btn btn-outline-danger">
-                                            <x-heroicon-m-trash class="w-5 h-5" />
-                                        </button>
-                                    </div>
-                                </div>
-                                <div x-show="addFromURL" x-transition:enter.duration.150ms
-                                    x-transition:leave.duration.50ms>
-                                    <form wire:submit.prevent="uploadImageFromURL">
-                                        <fieldset wire:loading.attr="disabled">
-                                            <x-input-label for="imageUrl" class="sr-only">
-                                                {{ __('Image URL') }}
-                                            </x-input-label>
-                                            <div class="flex items-center">
-                                                <div class="flex flex-1 rounded-md">
-                                                    <div
-                                                        class="relative flex items-stretch flex-grow focus-within:z-10">
-                                                        <x-input wire:model.defer="imageUrl" type="text" id="imageUrl"
-                                                            class="block w-full !rounded-r-none sm:text-sm"
-                                                            placeholder="https://" />
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary !rounded-l-none">
-                                                        <x-heroicon-m-arrow-up-tray
-                                                            class="w-5 h-5 mr-2 -ml-1 text-white dark:text-slate-200" />
-                                                        <span>{{ __('Upload') }}</span>
-                                                    </button>
-                                                </div>
-                                                <button x-on:click="addFromURL = false" type="button"
-                                                    class="inline-flex items-center py-2 ml-3">
-                                                    <x-heroicon-m-x-mark class="w-5 h-5" />
-                                                </button>
-                                            </div>
-                                            <x-input-error for="imageUrl" class="mt-2" />
-                                        </fieldset>
-                                    </form>
-                                </div>
-                                <ul
-                                    class="grid grid-cols-2 mt-8 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                                    <li wire:target="image, imageUrl" wire:loading class="relative">
-                                        <div
-                                            class="block w-full overflow-hidden rounded-lg aspect-w-10 aspect-h-7 bg-slate-100 dark:bg-slate-700">
-                                            <x-loading-spinner class="absolute inset-0 w-5 h-5 m-auto" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </x-slot:content>
-                            <x-slot:footer>
-                                <button x-bind:disabled="!selectedImage"
-                                    x-on:click="$wire.insertImage(selectedImage); selectedImage = null" type="button"
-                                    class="w-full btn btn-primary sm:ml-3 sm:w-auto">
-                                    {{ __('Insert') }}
-                                </button>
-                                <button x-on:click="$wire.set('showImageModal', false)" type="button"
-                                    class="w-full mt-3 btn btn-invisible sm:mt-0 sm:w-auto">
-                                    {{ __('Cancel') }}
-                                </button>
-                            </x-slot:footer>
-                        </x-modal-dialog>
-                    </div>
                 </div>
 
                 {{--

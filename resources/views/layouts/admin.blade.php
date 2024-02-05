@@ -333,8 +333,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('employee.productos') }}" @class(['group flex gap-x-3
-                                        rounded-md p-2 text-sm leading-6
+                                    <a href="{{ route('employee.productos') }}" @class(['group flex gap-x-3 rounded-md
+                                        p-2 text-sm leading-6
                                         font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
                                         request()->routeIs('employee.productos.*'), 'text-slate-700 hover:text-sky-600
                                         hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800
@@ -384,8 +384,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('employee.personas') }}" @class(['group flex gap-x-3
-                                        rounded-md p-2 text-sm leading-6
+                                    <a href="{{ route('employee.personas') }}" @class(['group flex gap-x-3 rounded-md
+                                        p-2 text-sm leading-6
                                         font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
                                         request()->routeIs('employee.customers.*'), 'text-slate-700 hover:text-sky-600
                                         hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800
@@ -628,6 +628,9 @@
 
     <!-- Scripts -->
     @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
     @vite('resources/js/admin.js')
     @stack('scripts')
 </body>

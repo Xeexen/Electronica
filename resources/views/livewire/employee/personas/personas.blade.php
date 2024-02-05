@@ -22,22 +22,6 @@
     <!-- Page content -->
     <div class="p-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <x-card class="overflow-hidden">
-            <x-slot:header>
-                <div x-data="{ search: @entangle('search')}"
-                    class="relative max-w-sm text-slate-400 focus-within:text-slate-600 dark:focus-within:text-slate-200">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <x-heroicon-o-magnifying-glass class="w-5 h-5" />
-                    </div>
-                    <x-input wire:model.debounce.500ms="search" type="text"
-                        class="w-full pl-10 placeholder-slate-500 sm:text-sm focus:placeholder-slate-400 dark:focus:placeholder-slate-600"
-                        ::class="{ 'pr-10' : search }" placeholder="{{ __('Filter customers') }}" />
-                    <button x-show="search.length" x-on:click="search = ''" type="button"
-                        class="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <x-heroicon-s-x-circle
-                            class="w-5 h-5 text-slate-500 hover:text-slate-600 dark:hover:text-slate-400" />
-                    </button>
-                </div>
-            </x-slot:header>
             <x-slot:content class="-mx-4 -my-5 sm:-mx-6">
                 <div class="overflow-x-auto">
                     <div class="inline-block min-w-full align-middle">
@@ -53,21 +37,18 @@
                                 <thead
                                     class="border-t border-slate-200 bg-slate-50 dark:border-slate-200/10 dark:bg-slate-800/75">
                                     <tr>
-                                        <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            <x-input wire:model="selectPage" type="checkbox"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 !rounded !shadow-none sm:left-6" />
+
+                                        <th scope="col"
+                                            class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
+                                            {{ __('Nombre del Cliente') }}
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('Customer name') }}
-                                        </th>
-                                        <th scope="col"
-                                            class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('Orders') }}
+                                            {{ __('Ordenes') }}
                                         </th>
                                         <th scope="col"
                                             class="py-4 pl-3 pr-4 text-sm font-semibold tracking-wide text-right text-slate-900 whitespace-nowrap sm:pr-6 dark:text-slate-200">
-                                            {{ __('Amount spent') }}
+                                            {{ __('Dinero Gastado') }}
                                         </th>
                                     </tr>
                                 </thead>
@@ -75,39 +56,23 @@
                                     @forelse($personas as $customer)
                                     <tr wire:loading.class.delay="opacity-50"
                                         class="relative hover:bg-slate-50 dark:hover:bg-slate-800/75">
-                                        <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            @if(in_array($customer->id, $selected))
-                                            <div class="absolute inset-y-0 left-0 w-0.5 bg-sky-500 dark:bg-sky-400">
-                                            </div>
-                                            @endif
-                                            <x-input wire:model="selected" wire:key="checkbox-{{ $customer->id }}"
-                                                type="checkbox" value="{{ $customer->id }}"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 !rounded !shadow-none sm:left-6" />
-                                        </td>
+
                                         <td
                                             class="relative px-3 py-4 text-sm font-medium text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
                                             <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="object-cover object-center w-10 h-10 rounded-full bg-slate-200"
-                                                        src="{{ $customer->getFirstMediaUrl('avatar') }}"
-                                                        alt="{{ $customer->name }}">
-                                                </div>
                                                 <div class="ml-4">
                                                     <a href="{{ route('employee.customers.detail', $customer) }}"
                                                         class="inline-flex items-center truncate hover:text-sky-600 dark:hover:text-sky-400">
-                                                        {{ $customer->name }}
+                                                        {{ $customer->nombre }}
                                                     </a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td
                                             class="relative px-3 py-4 text-sm text-left text-slate-500 whitespace-nowrap dark:text-slate-400">
-                                            {{ trans_choice(':count order|:count orders', $customer->orders_count) }}
+                                            {{-- {{ $ordenes}} --}}
                                         </td>
-                                        <td
-                                            class="py-4 pl-3 pr-4 text-sm text-right text-slate-500 whitespace-nowrap sm:pr-6 dark:text-slate-400">
-                                            <x-money :amount="$customer->orders->sum('total')" />
-                                        </td>
+
                                     </tr>
                                     @empty
                                     <tr>
@@ -117,10 +82,10 @@
                                                 <x-heroicon-o-magnifying-glass
                                                     class="inline-block w-10 h-10 text-slate-400 dark:text-slate-300" />
                                                 <h3 class="mt-2 text-sm font-medium text-slate-900 dark:text-slate-200">
-                                                    {{ __('No customers found') }}
+                                                    {{ __('No se encontraron Clientes') }}
                                                 </h3>
                                                 <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                    {{ __('Try changing the filters or search term') }}
+                                                    {{ __('Prueba cambiando los filtros') }}
                                                 </p>
                                             </div>
                                         </td>

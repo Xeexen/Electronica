@@ -34,7 +34,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-5">
                                     <x-input-label for="full-name" value="{{ __('Nombre Completo') }}" />
-                                    <x-input wire:model.defer="persona.name" type="text" id="full-name"
+                                    <x-input wire:model.defer="persona.nombre" type="text" id="full-name"
                                         class="block w-full mt-1 sm:text-sm" />
                                     <x-input-error for="persona.nombre" class="mt-2" />
                                 </div>
@@ -45,7 +45,7 @@
                                     <x-input-error for="persona.email" class="mt-2" />
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
-                                    <x-input-label for="email-address" value="{{ __('Email') }}" />
+                                    <x-input-label for="email-address" value="{{ __('Documento') }}" />
                                     <x-input wire:model.defer="persona.documento" type="text" id="email-address"
                                         class="block w-full mt-1 sm:text-sm" />
                                     <x-input-error for="persona.email" class="mt-2" />
@@ -82,11 +82,25 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6">
                                     <x-input-label for="provincia" :value="__('Provincia')" />
-                                    <x-select wire:model="persona.provincia" class="block w-full mt-1 sm:text-sm">
+                                    <x-select wire:model="provincia" class="block w-full mt-1 sm:text-sm">
                                         <option value="">{{ __('Seleccione') }}</option>
                                         @foreach ($provincias as $provincia)
-                                        <option value="{{ $provincia->provincia }}">{{ $provincia->provincia}}</option>
+                                        <option value="{{ $provincia->id }}">{{
+                                            $provincia->provincia}}</option>
                                         @endforeach
+                                    </x-select>
+                                    <x-input-error for="provincia" class="mt-2" />
+                                </div>
+                                <div class="col-span-6">
+                                    <x-input-label for="provincia" :value="__('Ciudad')" />
+                                    <x-select wire:model="persona.ciudad" class="block w-full mt-1 sm:text-sm">
+                                        <option value="">{{ __('Seleccione') }}</option>
+                                        @if ($listaCiudades)
+                                        @foreach ($listaCiudades as $ciudad)
+                                        <option value="{{ $ciudad->ciudad }}">{{ $ciudad->ciudad}}</option>
+                                        @endforeach
+                                        @endif
+
                                     </x-select>
                                     <x-input-error for="provincia" class="mt-2" />
                                 </div>

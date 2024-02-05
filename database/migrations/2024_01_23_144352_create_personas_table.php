@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('tipoDocumento');
             $table->string('documento');
             $table->string('email');
+            $table->string('provincia');
+            $table->string('ciudad');
             $table->string('direccion');
             $table->string('telefono');
             $table->json('tipoPersona');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
