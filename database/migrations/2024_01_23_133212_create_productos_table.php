@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('imagen')->nullable();
             $table->string('precio');
             $table->string('impuesto');
+            $table->string('unidades');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

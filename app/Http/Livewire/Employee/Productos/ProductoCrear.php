@@ -39,18 +39,23 @@ class ProductoCrear extends Component
         $this->validate();
 
         if ($this->imagen) {
+
+            // dd($this->imagen);
             $customFileName = Str::slug($this->producto->codigo) . '.webp';
             $this->imagen->storeAs('public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria, $customFileName);
 
             $webpImage = Image::make(storage_path('app/public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName));
             $webpImage->encode('webp', 90)->save();
 
-            $path = '/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName;
+            $path = 'storage/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName;
         } else {
             $path = null;
         }
 
         $this->producto->imagen = $path;
+
+        $this->producto->unidades = 0;
+        
         $this->producto->save();
 
         $this->flash('success', 'Se creo el producto ' . $this->producto->nombre, [
@@ -58,6 +63,8 @@ class ProductoCrear extends Component
             'timer' => 3000,
             'toast' => true,
         ]);
+
+        return redirect()->to(route('productos'));
     }
 
     public function render()

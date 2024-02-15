@@ -82,15 +82,19 @@
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('Product') }}
+                                            {{ __('Producto') }}
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-center text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('Status') }}
+                                            {{ __('Codigo') }}
                                         </th>
                                         <th scope="col"
                                             class="py-4 pl-3 pr-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap sm:pr-6 dark:text-slate-200">
-                                            {{ __('Inventory') }}
+                                            {{ __('Stock') }}
+                                        </th>
+                                        <th scope="col"
+                                            class="py-4 pl-3 pr-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap sm:pr-6 dark:text-slate-200">
+                                            {{ __('Acciones') }}
                                         </th>
                                     </tr>
                                 </thead>
@@ -109,7 +113,7 @@
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
                                                     <img class="object-cover object-center w-10 h-10 rounded"
-                                                        src="{{ $product->imagen ? $product->imagen : 'ok' }}">
+                                                        src="{{ $product->imagen ? asset($product->imagen) : asset('img/placeholder.png') }}">
                                                 </div>
                                                 <div class="ml-4">
                                                     <a href="{{ route('employee.producto.editar', $product->id) }}"
@@ -122,14 +126,21 @@
                                         <td
                                             class="relative px-3 py-4 text-sm text-center text-slate-500 whitespace-nowrap dark:text-slate-400">
                                             <x-badge :type="$product->is_active ? 'success' : 'default'">
-                                                {{ $product->descripcion }}
+                                                {{ $product->codigo }}
                                             </x-badge>
                                         </td>
                                         <td
                                             class="py-4 pl-3 pr-4 text-sm text-left text-slate-500 whitespace-nowrap sm:pr-6 dark:text-slate-400">
-                                            {{ __(':unidades en stock', ['count' => $product->variants_sum_stock_value])
+                                            {{ $product->unidades}}{{ __( ' :unidades en stock')
                                             }}
                                         </td>
+                                        <td
+                                            class="py-4 pl-3 pr-4 text-sm text-left text-slate-500 whitespace-nowrap sm:pr-6 dark:text-slate-400">
+                                            <button class="block btn btn-primary" type="button">
+                                                Editar
+                                            </button>
+                                        </td>
+
                                     </tr>
                                     @empty
                                     <tr>

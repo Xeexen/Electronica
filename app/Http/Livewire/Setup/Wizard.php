@@ -9,7 +9,6 @@ class Wizard extends WizardComponent
     public function steps(): array
     {
         return [
-            LicenseActivationStep::class,
             StoreInformationStep::class,
             AdministratorAccountStep::class,
             FinalizationStep::class,

@@ -97,7 +97,7 @@
                                         <x-input-label for="imagen" :value="__('Subir Imagen')" />
                                         <x-input
                                             class="relative inline-flex items-center px-4 py-2 text-sm font-medium bg-white border rounded-l-md border-slate-300 text-slate-700 hover:bg-slate-50 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-slate-700 dark:border-slate-500 dark:text-slate-200 dark:focus:ring-sky-400 dark:focus:border-sky-400 dark:hover:border-slate-400 dark:focus:ring-offset-slate-800"
-                                            wire:model.defer="imagen" type="file" />
+                                            wire:model="imagen" type="file" />
                                     </div>
                                     {{-- Description --}}
                                     <div>
