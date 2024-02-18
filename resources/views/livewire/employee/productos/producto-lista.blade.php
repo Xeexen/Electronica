@@ -11,13 +11,6 @@
                 {{ __('Productos') }}
             </h1>
         </div>
-        @if($productos->count())
-        <div class="flex mt-4 sm:mt-0 sm:ml-4">
-            <button wire:click.prevent="newProduct" class="block w-full btn btn-primary order-0 sm:order-1 sm:ml-3">
-                {{ __('Añadir Producto') }}
-            </button>
-        </div>
-        @endif
     </div>
 
     <!-- Page content -->

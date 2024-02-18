@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Employee\Auth\Login;
 use App\Http\Middleware\RedirectIfNotSetup;
+use App\Http\Livewire\Facturas\FacturasCrear;
+use App\Http\Livewire\Facturas\FacturasLista;
 use App\Http\Livewire\Employee\Personas\Personas;
 use App\Http\Livewire\Employee\Auth\ResetPassword;
 use App\Http\Livewire\Employee\Auth\ForgotPassword;
@@ -27,7 +29,9 @@ Route::group([
         Route::get('/', \App\Http\Livewire\Employee\Dashboard::class)->name('dashboard');
         Route::get('/profile', \App\Http\Livewire\Employee\Profile\ProfileManager::class)->name('profile');
         Route::get('/orders', \App\Http\Livewire\Employee\Order\OrderList::class)->name('orders.list');
+        Route::get('/factura', FacturasLista::class)->name('facturas.lista');
         Route::get('/orders/{order:id}', \App\Http\Livewire\Employee\Order\OrderDetail::class)->name('orders.detail');
+        Route::get('/factura/nueva', FacturasCrear::class)->name('factura.crear');
         Route::get('/orders/{order}/refund', \App\Http\Livewire\Employee\Order\OrderRefundCreate::class)->name('orders.refund');
         Route::get('/orders/{order}/shipments/create', \App\Http\Livewire\Employee\Order\OrderShipmentCreate::class)->name('orders.shipments.create');
         Route::get('/collections', \App\Http\Livewire\Employee\Collection\CollectionList::class)->name('collections.list');
