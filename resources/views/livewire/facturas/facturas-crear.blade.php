@@ -40,7 +40,7 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <x-input-label for="establecimiento" :value="__('Establecimiento')" />
-                                <x-input wire:model.defer="producto.nombre" type="text" id="name"
+                                <x-input wire:model.defer="factura.establecimiento" type="text" id="name"
                                     class="block w-full mt-1 sm:text-sm" :placeholder="__('Ingresa el nombre')" />
                                 <x-input-error for="nombre" class="mt-2" />
                             </div>
@@ -54,7 +54,7 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <x-input-label for="cliente" :value="__('Cliente:')" />
-                                <x-select wire:model.defer="factura.cliente" id="subcategoria"
+                                <x-select wire:model.defer="factura.cliente_id" id="subcategoria"
                                     class="block w-full mt-1 sm:text-sm">
                                     <option value="">{{ __('Selecione un Cliente') }}</option>
                                     @foreach ($clientes as $cliente)
@@ -149,6 +149,10 @@
                                                     class="px-3 py-3 text-xs font-medium tracking-wider text-center uppercase sm:px-6 text-slate-500 dark:text-slate-400">
                                                     {{ __('Subtotal') }}
                                                 </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3 text-xs font-medium tracking-wider text-center uppercase sm:px-6 text-slate-500 dark:text-slate-400">
+                                                    {{ __('Accion') }}
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-slate-200 dark:divide-slate-200/10">
@@ -236,6 +240,19 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                <td class="text-slate-500 dark:text-slate-400">
+                                                    <div class="flex items-center">
+                                                        <div class="flex flex-col max-w-xs ml-4">
+                                                            <div
+                                                                class="font-medium text-slate-900 hover:text-sky-600 truncate ... dark:text-slate-200 dark:hover:text-sky-400">
+                                                                <button wire:click="eliminarFila({{$index}})"
+                                                                    type="button" class="btn btn-outline-danger">
+                                                                    <x-heroicon-m-trash class="w-5 h-5" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -268,7 +285,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('Subtotal 12%') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -278,7 +295,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('Subtotal 0%') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -288,7 +305,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('Subtotal') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -298,7 +315,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('IVA') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -308,7 +325,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('Descuento') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -318,7 +335,7 @@
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 12') }}
+                                                        {{ __('Total') }}
                                                     </th>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
@@ -327,11 +344,16 @@
                                                 </tr>
                                             </thead>
                                         </table>
+
                                     </div>
                                 </div>
                             </x-slot:content>
                         </x-card>
                     </div>
+                    <button wire:click.prevent='save' class="btn btn-primary">
+                        <x-heroicon-m-plus class="w-5 h-5 mr-2 -ml-1" />
+                        {{ __('Guardar') }}
+                    </button>
                 </div>
             </div>
         </div>

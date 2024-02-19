@@ -55,7 +55,7 @@ class ProductoCrear extends Component
         $this->producto->imagen = $path;
 
         $this->producto->unidades = 0;
-        
+
         $this->producto->save();
 
         $this->flash('success', 'Se creo el producto ' . $this->producto->nombre, [
@@ -64,7 +64,7 @@ class ProductoCrear extends Component
             'toast' => true,
         ]);
 
-        return redirect()->to(route('productos'));
+        return redirect()->to(route('employee.productos'));
     }
 
     public function render()

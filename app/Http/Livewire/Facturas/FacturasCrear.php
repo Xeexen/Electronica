@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Facturas;
 
+use App\Models\Empresa;
+use App\Models\Factura;
 use App\Models\Persona;
 use Livewire\Component;
 use App\Models\Producto;
@@ -11,11 +13,20 @@ class FacturasCrear extends Component
 {
     use LivewireAlert;
 
-    public $productos, $clientes, $items;
+    public Factura $factura;
+    public $productos, $clientes, $items, $empresa;
     public $nombre, $precio, $cantidad, $descuento, $iva, $subtotal, $descuentoTotal, $subtotal_12, $ivaTotal, $subtotal_0, $subtotales, $total;
 
+    public function rules()
+    {
+        return [
+            'factura.establecimiento' => 'required|max:3',
+            'factura.puntoEmision' => 'required|max:3'
+        ];
+    }
     public function mount()
     {
+        $this->factura = new Factura();
         $this->items[] = [
             'nombre' => $this->nombre,
             'precio' => $this->precio,
@@ -26,6 +37,7 @@ class FacturasCrear extends Component
         ];
         $this->productos = Producto::all();
         $this->clientes = Persona::where('tipoPersona->cliente', true)->get();
+        $this->empresa = Empresa::first();
     }
 
     public function valores($index)
@@ -88,6 +100,56 @@ class FacturasCrear extends Component
             'iva' => $this->iva,
             'subtotal' => $this->subtotal,
         ];
+    }
+
+    public function eliminarFila($index)
+    {
+        $nuevasFilas = [];
+        foreach ($this->items as $key => $fila) {
+            if ($key !== $index) {
+                $nuevasFilas[] = $fila;
+            }
+        }
+        $this->items = $nuevasFilas;
+        $this->calcSubtotal();
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $ultimaFactura = Factura::where('establecimiento', $this->establecimiento)
+            ->where('puntoEmision', $this->puntoEmision)
+            ->orderBy('secuencial', 'desc')
+            ->first();
+        $numeroFactura = $ultimaFactura ? $ultimaFactura->secuencial + 1 : 1;
+        $firmado = 0;
+        $enviado = 0;
+        $autorizado = 0;
+        $this->factura->secuencial = str_pad($numeroFactura, 9, "0", STR_PAD_LEFT);
+        $claveAcceso = str_replace('-', '', \Carbon\Carbon::createFromFormat('Y-m-d', $this->fechaEmision)->format('d-m-Y')) . '01' . $this->empresa->ruc . '2' . $this->factura->establecimiento . $this->factura->puntoEmision . $this->factura->secuencial . "12345678" . "1";
+
+        $clave = strrev($claveAcceso);
+        $suma = 0;
+        $factor = 2;
+
+        for ($i = 0; $i < strlen($clave); $i++) {
+            $suma += $clave[$i] * $factor;
+            $factor = $factor == 7 ? 2 : $factor + 1;
+        }
+
+        $modulo = $suma % 11;
+
+        if ($modulo >= 2) {
+            $modulo = 11 - $modulo;
+        } else {
+            $modulo = 0;
+        }
+
+        if ($modulo === 10) {
+            $modulo = 0;
+        }
+        dd($modulo);
     }
 
     public function render()

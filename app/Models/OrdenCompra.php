@@ -12,10 +12,13 @@ class OrdenCompra extends Model
     protected $table = 'orden_compras';
 
     protected $fillable = [
-        'fechaEmision',
         'establecimiento',
         'puntoEmision',
         'secuencial',
+        'codigoAcceso',
+        'descuento',
+        'subtotal',
+        'total',
         'proveedor_id'
     ];
 }

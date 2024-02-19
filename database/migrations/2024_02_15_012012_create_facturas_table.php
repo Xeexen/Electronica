@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
+            $table->string('establecimiento', 3);
+            $table->string('puntoEmision', 3);
+            $table->string('secuencial', 9);
+            $table->string('codigoAcceso', 49);
+            $table->foreignId('cliente_id')->references('id')->on('personas');
             $table->timestamps();
         });
     }

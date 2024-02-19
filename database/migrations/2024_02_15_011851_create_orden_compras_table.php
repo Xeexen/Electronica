@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('orden_compras', function (Blueprint $table) {
             $table->id();
-            $table->string('fechaEmision');
             $table->string('establecimiento');
             $table->string('puntoEmision');            
             $table->string('secuencial');
+            $table->string('codigoAcceso');
+            $table->string('descuento');
+            $table->string('subtotal');
+            $table->string('total');
             $table->foreignId('proveedor_id')->references('id')->on('personas');
             $table->timestamps();
         });

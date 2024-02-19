@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('orden_compra_detalles', function (Blueprint $table) {
             $table->id();
-            $table->string('producto');
-            $table->string('precio');
+            $table->foreignId('producto_id')->references('id')->on('productos');
             $table->string('cantidad');
             $table->string('descuento');
             $table->string('subtotal');
+            $table->foreignId('ordenCompra_id')->references('id')->on('orden_compras');
             $table->timestamps();
         });
     }
