@@ -7,7 +7,7 @@
     <!-- Page title & actions -->
     <div class="flex px-4 sm:px-6 lg:px-8">
         <div class="flex-shrink-0 mr-2">
-            <a href="{{ route('employee.orders.list') }}" class="btn btn-default btn-xs">
+            <a href="{{ route('employee.facturas.lista') }}" class="btn btn-default btn-xs">
                 <x-heroicon-m-arrow-left class="w-5 h-5" />
             </a>
         </div>
@@ -61,6 +61,9 @@
                                     <option value="{{ $cliente->id}}">{{ $cliente->nombre}}</option>
                                     @endforeach
                                 </x-select>
+                            </div>
+                            <div>
+                                <time datetime="" class="text-slate-500">
                             </div>
                         </div>
                     </x-slot:content>

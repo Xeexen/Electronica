@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Facturas;
+namespace App\Http\Livewire\Employee\Facturas;
 
 use App\Models\Factura;
 use App\Models\Persona;
 use Livewire\Component;
-use App\Models\Producto;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class FacturasLista extends Component

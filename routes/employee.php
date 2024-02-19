@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Employee\Auth\Login;
 use App\Http\Middleware\RedirectIfNotSetup;
-use App\Http\Livewire\Facturas\FacturasCrear;
-use App\Http\Livewire\Facturas\FacturasLista;
 use App\Http\Livewire\Employee\Personas\Personas;
 use App\Http\Livewire\Employee\Auth\ResetPassword;
 use App\Http\Livewire\Employee\Auth\ForgotPassword;
 use App\Http\Livewire\Employee\Personas\PersonaCrear;
+use App\Http\Livewire\Employee\Facturas\FacturasCrear;
+use App\Http\Livewire\Employee\Facturas\FacturasLista;
 use App\Http\Livewire\Employee\Productos\ProductoCrear;
 use App\Http\Livewire\Employee\Productos\ProductoLista;
 use App\Http\Livewire\Employee\Productos\ProductoEditar;

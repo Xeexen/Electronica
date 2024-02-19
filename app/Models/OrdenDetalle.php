@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FacturaDetalle extends Model
+class OrdenDetalle extends Model
 {
     use HasFactory;
 
-    protected $table = 'factura_detalles';
+    protected $table = 'orden_detalles';
 
     protected $fillable = [
         'producto_id',
         'precio',
         'cantidad',
-        'descuento',
         'subtotal',
-        'factura_id'
+        'orden_id'
     ];
 }

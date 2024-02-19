@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('orden_detalles', function (Blueprint $table) {
             $table->id();
-            $table->string('establecimiento', 3);
-            $table->string('puntoEmision', 3);
-            $table->string('secuencial', 9);
-            $table->string('codigoAcceso', 49);
-            $table->string('descuento');
+            $table->foreignId('producto_id')->references('id')->on('productos');
+            $table->string('precio');
+            $table->string('cantidad');
             $table->string('subtotal');
-            $table->string('total');
-            $table->foreignId('cliente_id')->references('id')->on('personas');
+            $table->foreignId('orden_id')->references('id')->on('ordenes');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('orden_detalles');
     }
 };

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Facturas;
+namespace App\Http\Livewire\Employee\Facturas;
 
 use App\Models\Empresa;
 use App\Models\Factura;
 use App\Models\Persona;
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\FacturaDetalle;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class FacturasCrear extends Component
@@ -21,7 +22,8 @@ class FacturasCrear extends Component
     {
         return [
             'factura.establecimiento' => 'required|max:3',
-            'factura.puntoEmision' => 'required|max:3'
+            'factura.puntoEmision' => 'required|max:3',
+            'factura.cliente_id' => 'required'
         ];
     }
     public function mount()
@@ -118,16 +120,13 @@ class FacturasCrear extends Component
     {
         $this->validate();
 
-        $ultimaFactura = Factura::where('establecimiento', $this->establecimiento)
-            ->where('puntoEmision', $this->puntoEmision)
+        $ultimaFactura = Factura::where('establecimiento', $this->factura->establecimiento)
+            ->where('puntoEmision', $this->factura->puntoEmision)
             ->orderBy('secuencial', 'desc')
             ->first();
         $numeroFactura = $ultimaFactura ? $ultimaFactura->secuencial + 1 : 1;
-        $firmado = 0;
-        $enviado = 0;
-        $autorizado = 0;
         $this->factura->secuencial = str_pad($numeroFactura, 9, "0", STR_PAD_LEFT);
-        $claveAcceso = str_replace('-', '', \Carbon\Carbon::createFromFormat('Y-m-d', $this->fechaEmision)->format('d-m-Y')) . '01' . $this->empresa->ruc . '2' . $this->factura->establecimiento . $this->factura->puntoEmision . $this->factura->secuencial . "12345678" . "1";
+        $claveAcceso = str_replace('-', '', \Carbon\Carbon::now()->format('d-m-Y')) . '01' . $this->empresa->ruc . '2' . $this->factura->establecimiento . $this->factura->puntoEmision . $this->factura->secuencial . "12345678" . "1";
 
         $clave = strrev($claveAcceso);
         $suma = 0;
@@ -149,7 +148,33 @@ class FacturasCrear extends Component
         if ($modulo === 10) {
             $modulo = 0;
         }
-        dd($modulo);
+
+        $this->factura->codigoAcceso = $claveAcceso . $modulo;
+
+        $this->factura->total = $this->total;
+
+        $this->factura->descuento = $this->descuentoTotal;
+
+        $this->factura->save();
+
+        foreach ($this->items as $detalle) {
+            FacturaDetalle::create([
+                'producto_id' => $detalle['nombre'],
+                'precio' => $detalle['precio'],
+                'cantidad' => $detalle['cantidad'],
+                'descuento' => $detalle['descuento'],
+                'subtotal' => $detalle['subtotal'],
+                'factura_id' => $this->factura->id
+            ]);
+        }
+
+        $this->flash('success', 'Se creo el comprobante No. ' . $this->factura->establecimiento . '-' . $this->factura->puntoEmision . '-' . $this->factura->secuencial, [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
+
+        return redirect()->to(route('employee.facturas.lista'));
     }
 
     public function render()

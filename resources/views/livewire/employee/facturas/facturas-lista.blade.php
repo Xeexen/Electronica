@@ -53,21 +53,13 @@
                                 <thead
                                     class="border-t border-slate-200 bg-slate-50 dark:border-slate-200/10 dark:bg-slate-800/75">
                                     <tr>
-                                        <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            <x-input wire:model="selectPage" type="checkbox"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 !rounded !shadow-none sm:left-6" />
-                                        </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
                                             {{ __('ID') }}
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('CLiente') }}
-                                        </th>
-                                        <th scope="col"
-                                            class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('Estado') }}
+                                            {{ __('Cliente') }}
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-right text-slate-900 whitespace-nowrap dark:text-slate-200">
@@ -83,61 +75,29 @@
                                     @forelse($facturas as $factura)
                                     <tr wire:loading.class.delay="opacity-50"
                                         class="relative hover:bg-slate-50 dark:hover:bg-slate-800/75">
-                                        <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                            @if(in_array($factura->id, $selected))
-                                            <div class="absolute inset-y-0 left-0 w-0.5 bg-sky-500 dark:bg-sky-400">
-                                            </div>
-                                            @endif
-                                            <x-input wire:model="selected" wire:key="checkbox-{{ $facturas->id }}"
-                                                type="checkbox" value="{{ $facturas->id }}"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 !rounded !shadow-none sm:left-6" />
-                                        </td>
                                         <td
                                             class="relative px-3 py-4 text-sm font-medium text-left text-slate-900 whitespace-nowrap tabular-nums dark:text-slate-200">
-                                            <a href="{{ route('employee.orders.detail', $facturas) }}"
-                                                class="hover:text-sky-600 dark:hover:text-sky-400">
-                                                {{ $facturas->id }}
-                                            </a>
+                                            <label class="hover:text-sky-600 dark:hover:text-sky-400">
+                                                {{ $factura->id }}
+                                            </label>
                                         </td>
                                         <td
                                             class="relative px-3 py-4 text-sm text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            @if($facturas->customer)
-                                            <a href="{{ route('employee.customers.detail', $facturas->customer) }}"
-                                                class="hover:text-sky-600 dark:hover:text-sky-400">
-                                                {{ $facturas->customer->name }}
-                                            </a>
-                                            @else
-                                            <span class="text-gray-500">{{ __('No customer') }}</span>
-                                            @endif
-                                        </td>
-                                        <td
-                                            class="relative px-3 py-4 text-sm text-left text-slate-500 whitespace-nowrap dark:text-slate-400">
-                                            <div class="flex items-center space-x-1">
-                                                <span class="block w-2 h-2 rounded-full"
-                                                    style="background-color: {{ $facturas->payment_status->color() }}"></span>
-                                                <span>{{ $facturas->payment_status->label() }}</span>
-                                            </div>
-                                        </td>
-                                        <td
-                                            class="relative px-3 py-4 text-sm text-left text-slate-500 whitespace-nowrap dark:text-slate-400">
-                                            <div class="flex items-center space-x-1">
-                                                <span class="block w-2 h-2 rounded-full"
-                                                    style="background-color: {{ $facturas->shipping_status->color() }}"></span>
-                                                <span>{{ $facturas->shipping_status->label() }}</span>
-                                            </div>
-                                        </td>
-                                        <td
-                                            class="relative px-3 py-4 text-sm text-left text-slate-500 whitespace-nowrap tabular-nums dark:text-slate-400">
-                                            {{ trans_choice(':count item|:count items',
-                                            $facturas->order_items_sum_quantity) }}
+                                            <span class="text-gray-500">
+                                                @foreach ($clientes as $cliente)
+                                                @if ($cliente->id === $factura->id)
+                                                {{ $cliente->nombre }}
+                                                @endif
+                                                @endforeach
+                                            </span>
                                         </td>
                                         <td
                                             class="relative px-3 py-4 text-sm text-right text-slate-500 whitespace-nowrap tabular-nums dark:text-slate-400">
-                                            <x-money :amount="$facturas->total" />
+                                            <x-money :amount="$factura->total" />
                                         </td>
                                         <td
                                             class="py-4 pl-3 pr-4 text-sm text-right text-slate-500 whitespace-nowrap tabular-nums sm:pr-6 dark:text-slate-400">
-                                            {{ $facturas->created_at }}
+                                            {{ $factura->created_at }}
                                         </td>
                                     </tr>
                                     @empty
