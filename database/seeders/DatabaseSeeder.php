@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ProvinciasSeeder::class);
         $this->call(ConsumidorSeeder::class);
+        //
     }
 }
