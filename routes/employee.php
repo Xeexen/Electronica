@@ -5,6 +5,7 @@ use App\Http\Livewire\Employee\Auth\Login;
 use App\Http\Middleware\RedirectIfNotSetup;
 use App\Http\Livewire\Employee\Personas\Personas;
 use App\Http\Livewire\Employee\Auth\ResetPassword;
+use App\Http\Livewire\Employee\Ordenes\OrdenLista;
 use App\Http\Livewire\Employee\Auth\ForgotPassword;
 use App\Http\Livewire\Employee\Personas\PersonaCrear;
 use App\Http\Livewire\Employee\Facturas\FacturasCrear;
@@ -29,6 +30,7 @@ Route::group([
         Route::get('/', \App\Http\Livewire\Employee\Dashboard::class)->name('dashboard');
         Route::get('/profile', \App\Http\Livewire\Employee\Profile\ProfileManager::class)->name('profile');
         Route::get('/orders', \App\Http\Livewire\Employee\Order\OrderList::class)->name('orders.list');
+        Route::get('/ordenes', OrdenLista::class)->name('ordenes.lista');
         Route::get('/factura', FacturasLista::class)->name('facturas.lista');
         Route::get('/orders/{order:id}', \App\Http\Livewire\Employee\Order\OrderDetail::class)->name('orders.detail');
         Route::get('/factura/nueva', FacturasCrear::class)->name('factura.crear');

@@ -21,6 +21,6 @@ class FacturasLista extends Component
 
     public function render()
     {
-        return view('livewire.facturas.facturas-lista')->layout('layouts.admin');
+        return view('livewire.employee.facturas.facturas-lista')->layout('layouts.admin');
     }
 }

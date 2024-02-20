@@ -179,6 +179,6 @@ class FacturasCrear extends Component
 
     public function render()
     {
-        return view('livewire.facturas.facturas-crear')->layout('layouts.admin');
+        return view('livewire.employee.facturas.facturas-crear')->layout('layouts.admin');
     }
 }
