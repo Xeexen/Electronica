@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Guest\ListaCategorias;
+use App\Http\Livewire\Guest\ListaSubcategorias;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'guest.', 'middleware' => \App\Http\Middleware\RedirectIfNotSetup::class], function () {
     Route::get('/', \App\Http\Livewire\Guest\Welcome::class)->name('welcome');
     Route::get('/collections', \App\Http\Livewire\Guest\CollectionList::class)->name('collections.list');
+    Route::get('/categorias', ListaCategorias::class)->name('categorias.lista');
     Route::get('/collections/{collection}', \App\Http\Livewire\Guest\CollectionDetail::class)->name('collections.detail');
+    Route::get('{id}/{categoria}/lista', ListaSubcategorias::class)->name('subcategorias.lista');
     Route::redirect('/products', '/collections')->name('products.list');
     Route::get('/products/{product}', \App\Http\Livewire\Guest\ProductDetail::class)->name('products.detail');
     Route::get('/cart', \App\Http\Livewire\Guest\ShoppingCart::class)->name('cart');

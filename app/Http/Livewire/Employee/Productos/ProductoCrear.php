@@ -4,10 +4,10 @@ namespace App\Http\Livewire\Employee\Productos;
 
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Support\Str;
+use App\Models\Subcategoria;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -15,13 +15,13 @@ class ProductoCrear extends Component
 {
     use WithFileUploads, LivewireAlert;
     public Producto $producto;
-    public $categorias, $subcategorias, $imagen;
+    public $categorias, $subcategorias, $imagen, $subcategoriasLista;
 
     public $rules = [
         'producto.nombre' => 'required|max:20',
         'producto.codigo' => 'required|max:20',
         'imagen' => 'nullable|mimes:jpg, png, webp, jpeg',
-        'producto.descripcion' => 'nullable|max:50',
+        'producto.descripcion' => 'required|max:50',
         'producto.categoria' => 'required',
         'producto.subcategoria' => 'required',
         'producto.precio' => 'required|max:8',
@@ -31,6 +31,13 @@ class ProductoCrear extends Component
     public function mount()
     {
         $this->producto = new Producto;
+        $this->categorias = Categoria::all();
+        $this->subcategorias = Subcategoria::all();
+    }
+
+    public function listaSubcategoria()
+    {
+        $this->subcategoriasLista = $this->subcategorias->where('categoria_id', $this->producto->categoria);
     }
 
     public function save()
@@ -40,7 +47,6 @@ class ProductoCrear extends Component
 
         if ($this->imagen) {
 
-            // dd($this->imagen);
             $customFileName = Str::slug($this->producto->codigo) . '.webp';
             $this->imagen->storeAs('public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria, $customFileName);
 

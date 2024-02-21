@@ -4,19 +4,24 @@ namespace App\Http\Livewire\Guest\Components;
 
 use App\Models\Cart;
 use App\Models\Menu;
-use App\Models\MenuItem;
 use App\Models\Product;
-use App\Settings\LayoutSetting;
 use Livewire\Component;
+use App\Models\MenuItem;
+use App\Models\Categoria;
+use App\Models\Subcategoria;
+use App\Settings\LayoutSetting;
 
 class Header extends Component
 {
     public $itemsCount = 0;
+    public $categorias, $subcategorias; 
 
     protected $listeners = ['refresh'];
 
     public function mount()
     {
+        $this->categorias = Categoria::all();
+        $this->subcategorias = Subcategoria::all();
         $this->itemsCount = $this->cart->items_sum_quantity ?? 0;
     }
 

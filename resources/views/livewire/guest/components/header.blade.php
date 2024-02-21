@@ -126,6 +126,7 @@
                     </a>
 
                     {{-- Flyout menus --}}
+                    @foreach ($categorias as $categoria)
                     <div class="hidden lg:ml-8 lg:block lg:self-stretch">
                         <div class="flex justify-center h-full space-x-8">
                             <div x-data="{ open: false }" x-on:keydown.escape="open = false" class="flex">
@@ -134,7 +135,7 @@
                                         class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium transition-colors duration-200 ease-out border-b-2"
                                         x-bind:class="{ 'border-sky-600 text-sky-600': open, 'border-transparent text-slate-700 hover:text-slate-800': !open }"
                                         x-bind:aria-expanded="open.toString()">
-                                        <span>Perifericos</span>
+                                        <span>{{ $categoria->categoria }}</span>
                                     </button>
                                 </div>
                                 <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -150,19 +151,19 @@
                                             <div class="grid grid-cols-5 py-16 text-sm gap-y-10 gap-x-8">
                                                 <div>
                                                     <p id="-heading" class="font-medium text-slate-900">
-                                                        Mouse </p>
+                                                        {{ $categoria->categoria }} </p>
                                                     <ul role="list" aria-labelledby="-heading"
                                                         class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                                                        @foreach ($subcategorias as $subcategoria)
+                                                        @if ($subcategoria->categoria_id === $categoria->id)
                                                         <li class="flex">
                                                             <a href="" class="hover:text-slate-800">
-                                                                Inalambricos
+                                                                {{ $subcategoria->subcategoria }}
                                                             </a>
                                                         </li>
-                                                        <li class="flex">
-                                                            <a href="" class="hover:text-slate-800">
-                                                                Ergonomicos
-                                                            </a>
-                                                        </li>
+                                                        @endif
+                                                        @endforeach
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -170,16 +171,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href=""
-                                class="flex items-center text-sm font-medium text-slate-700 hover:text-slate-800">
-                                s
-                            </a>
-                            @if(!$is_local && !$is_staging && !$generalSettings->license_active)
-                            <livewire:components.faded />
-                            @endif
                         </div>
                     </div>
-
+                    @endforeach
                     <div class="flex items-center justify-end flex-1 lg:ml-auto">
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                             @guest()

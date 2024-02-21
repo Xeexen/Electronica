@@ -65,7 +65,7 @@
                 <p class="mt-3 text-xl text-white line-clamp-2">
                     {{ __('Si no quieres aprender a llorar, en nuesta electronica tienes que comprar!.') }}
                 </p>
-                <a href="javascript:void(0);"
+                <a href=""
                     class="block w-full px-8 py-3 mt-8 text-base font-medium bg-white border border-transparent rounded-md cursor-not-allowed text-slate-900 hover:bg-slate-100 sm:w-auto">
                     {{ __('Shop now') }}
                 </a>
