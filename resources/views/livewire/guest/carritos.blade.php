@@ -37,14 +37,14 @@
 
                         <li class="flex py-6">
                             <div class="flex-shrink-0 border rounded-md border-slate-200">
-                                @if($producto->imagen)
+                                {{-- @if($producto->imagen)
                                 {{ $producto->imagen }}
-                                @else
+                                @else --}}
                                 <div class="relative w-24 h-24 rounded-md bg-slate-100 sm:h-32 sm:w-32">
                                     <x-heroicon-o-camera
                                         class="absolute inset-0 w-16 h-full mx-auto text-slate-400 sm:w-24" />
                                 </div>
-                                @endif
+                                {{-- @endif --}}
                             </div>
 
                             <div class="flex flex-col flex-1 ml-4 sm:ml-6">
@@ -52,9 +52,9 @@
                                     <div class="flex justify-between">
                                         <h4 class="text-sm">
                                             @foreach ($categorias as $categoria)
-                                            @if ($categoria === $producto->categoria)
-                                            @foreach ($categorias as $categoria)
-                                            @if ($subcategoria === $producto->subcategoria)
+                                            @if ($categoria->id == $producto->categoria)
+                                            @foreach ($subcategorias as $subcategoria)
+                                            @if ($subcategoria->id == $producto->subcategoria)
                                             <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => 
                                                             $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
                                                 class="font-medium text-slate-700 hover:text-slate-800">

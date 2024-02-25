@@ -77,24 +77,24 @@
                                                     group-hover:text-sky-600 dark:group-hover:text-white
                                                     dark:group-hover:bg-slate-800' =>
                                                     !request()->routeIs('employee.dashboard')]) />
-                                                    {{ __('Dashboard') }}
+                                                    {{ __('Panel') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('employee.orders.list') }}" @class(['group flex gap-x-3
+                                            <a href="{{ route('employee.ordenes.lista') }}" @class(['group flex gap-x-3
                                                 rounded-md p-2 text-sm leading-6
                                                 font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                request()->routeIs('employee.orders.*'), 'text-slate-700
+                                                request()->routeIs('employee.ordenes.lista.*'), 'text-slate-700
                                                 hover:text-sky-600 hover:bg-gray-50 dark:text-slate-300
                                                 dark:hover:bg-slate-800 dark:hover:text-white' =>
-                                                !request()->routeIs('employee.orders.*')])
+                                                !request()->routeIs('employee.ordenes.lista.*')])
                                                 >
                                                 <x-heroicon-o-inbox @class(['h-6 w-6
                                                     shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                    request()->routeIs('employee.orders.*'), 'text-slate-400
+                                                    request()->routeIs('employee.ordenes.lista.*'), 'text-slate-400
                                                     group-hover:text-sky-600 dark:group-hover:text-white
                                                     dark:group-hover:bg-slate-800' =>
-                                                    !request()->routeIs('employee.orders.*')]) />
+                                                    !request()->routeIs('employee.ordenes.lista.*')]) />
                                                     {{ __('Ordenes') }}
                                             </a>
                                         </li>
@@ -114,42 +114,6 @@
                                                     dark:group-hover:bg-slate-800' =>
                                                     !request()->routeIs('employee.productos.*')]) />
                                                     {{ __('Productos') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('employee.reviews.list') }}" @class(['group flex gap-x-3
-                                                rounded-md p-2 text-sm leading-6
-                                                font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                request()->routeIs('employee.reviews.*'), 'text-slate-700
-                                                hover:text-sky-600 hover:bg-gray-50 dark:text-slate-300
-                                                dark:hover:bg-slate-800 dark:hover:text-white' =>
-                                                !request()->routeIs('employee.reviews.*')])
-                                                >
-                                                <x-heroicon-o-star @class(['h-6 w-6
-                                                    shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                    request()->routeIs('employee.reviews.*'), 'text-slate-400
-                                                    group-hover:text-sky-600 dark:group-hover:text-white
-                                                    dark:group-hover:bg-slate-800' =>
-                                                    !request()->routeIs('employee.reviews.*')]) />
-                                                    {{ __('Reviews') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('employee.collections.list') }}" @class(['group flex
-                                                gap-x-3 rounded-md p-2 text-sm leading-6
-                                                font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                request()->routeIs('employee.collections.*'), 'text-slate-700
-                                                hover:text-sky-600 hover:bg-gray-50 dark:text-slate-300
-                                                dark:hover:bg-slate-800 dark:hover:text-white' =>
-                                                !request()->routeIs('employee.collections.*')])
-                                                >
-                                                <x-heroicon-o-rectangle-stack @class(['h-6 w-6
-                                                    shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                                    request()->routeIs('employee.collections.*'), 'text-slate-400
-                                                    group-hover:text-sky-600 dark:group-hover:text-white
-                                                    dark:group-hover:bg-slate-800' =>
-                                                    !request()->routeIs('employee.collections.*')]) />
-                                                    {{ __('Collections') }}
                                             </a>
                                         </li>
                                         <li>
@@ -262,18 +226,20 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('employee.orders.list') }}" @class(['group flex gap-x-3 rounded-md
-                                        p-2 text-sm leading-6
+                                    <a href="{{ route('employee.ordenes.lista') }}" @class(['group flex gap-x-3
+                                        rounded-md p-2 text-sm leading-6
                                         font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                        request()->routeIs('employee.orders.*'), 'text-slate-700 hover:text-sky-600
+                                        request()->routeIs('employee.ordenes.lista.*'), 'text-slate-700
+                                        hover:text-sky-600
                                         hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800
-                                        dark:hover:text-white' => !request()->routeIs('employee.orders.*')])
+                                        dark:hover:text-white' => !request()->routeIs('employee.ordenes.lista.*')])
                                         >
                                         <x-heroicon-o-inbox @class(['h-6 w-6
                                             shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                            request()->routeIs('employee.orders.*'), 'text-slate-400
+                                            request()->routeIs('employee.ordenes.lista.*'), 'text-slate-400
                                             group-hover:text-sky-600 dark:group-hover:text-white
-                                            dark:group-hover:bg-slate-800' => !request()->routeIs('employee.orders.*')])
+                                            dark:group-hover:bg-slate-800' =>
+                                            !request()->routeIs('employee.ordenes.lista.*')])
                                             />
                                             {{ __('Ordenes') }}
                                     </a>
@@ -296,40 +262,6 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('employee.reviews.list') }}" @class(['group flex gap-x-3
-                                        rounded-md p-2 text-sm leading-6
-                                        font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                        request()->routeIs('employee.reviews.*'), 'text-slate-700 hover:text-sky-600
-                                        hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800
-                                        dark:hover:text-white' => !request()->routeIs('employee.reviews.*')])
-                                        >
-                                        <x-heroicon-o-star @class(['h-6 w-6
-                                            shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                            request()->routeIs('employee.reviews.*'), 'text-slate-400
-                                            group-hover:text-sky-600 dark:group-hover:text-white
-                                            dark:group-hover:bg-slate-800' =>
-                                            !request()->routeIs('employee.reviews.*')]) />
-                                            {{ __('Reviews') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('employee.collections.list') }}" @class(['group flex gap-x-3
-                                        rounded-md p-2 text-sm leading-6
-                                        font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                        request()->routeIs('employee.collections.*'), 'text-slate-700 hover:text-sky-600
-                                        hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800
-                                        dark:hover:text-white' => !request()->routeIs('employee.collections.*')])
-                                        >
-                                        <x-heroicon-o-rectangle-stack @class(['h-6 w-6
-                                            shrink-0', 'text-sky-600 dark:bg-slate-800 dark:text-white'=>
-                                            request()->routeIs('employee.collections.*'), 'text-slate-400
-                                            group-hover:text-sky-600 dark:group-hover:text-white
-                                            dark:group-hover:bg-slate-800' =>
-                                            !request()->routeIs('employee.collections.*')]) />
-                                            {{ __('Collections') }}
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('employee.personas') }}" @class(['group flex gap-x-3 rounded-md
                                         p-2 text-sm leading-6
                                         font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
@@ -346,7 +278,7 @@
                                             {{ __('Clientes/Proveedores') }}
                                     </a>
                                 </li>
-                               
+
                                 <li>
                                     <a href="{{ route('employee.shipping.manager') }}" @class(['group flex gap-x-3
                                         rounded-md p-2 text-sm leading-6
@@ -365,7 +297,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('employee.articles.list') }}" @class(['group flex gap-x-3
+                                    <a href="{{ route('employee.facturas.lista') }}" @class(['group flex gap-x-3
                                         rounded-md p-2 text-sm leading-6
                                         font-semibold', 'bg-slate-50 text-sky-600 dark:bg-slate-800 dark:text-white'=>
                                         request()->routeIs('employee.articles.*'), 'text-slate-700 hover:text-sky-600

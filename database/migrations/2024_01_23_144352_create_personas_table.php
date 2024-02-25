@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('direccion');
             $table->string('telefono');
+            $table->foreignId('usuario_id')->nullable()->references('id')->on('customers');
             $table->json('tipoPersona');
             $table->timestamps();
             $table->softDeletes();

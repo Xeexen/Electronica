@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('numero');
             $table->foreignId('cliente_id')->references('id')->on('personas');
-            $table->string('pagado');
-            $table->string('cancelado');
-            $table->string('enviado');
-            $table->string('recibido');
+            $table->boolean('cancelado');
+            $table->boolean('enviado');
+            $table->boolean('recibido');
+            $table->string('total');
+            $table->json('formaPago');
             $table->timestamps();
         });
     }

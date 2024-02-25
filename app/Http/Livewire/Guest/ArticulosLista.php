@@ -18,7 +18,8 @@ class ArticulosLista extends Component
     {
         $this->subcategoria = Subcategoria::find($id);
         $this->categoria = Categoria::firstWhere('id', $this->subcategoria->categoria_id);
-        $this->productos = Producto::where('categoria', $id)->get();
+        $this->productos = Producto::where('subcategoria', $id)->get();
+        // dd($this->productos);
     }
 
     public function applySorting($sortBy, $sortDirection)

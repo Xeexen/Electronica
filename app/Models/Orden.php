@@ -14,9 +14,15 @@ class Orden extends Model
     protected $fillable = [
         'numero',
         'cliente_id',
-        'pagado',
         'cancelado',
         'enviado',
-        'recibido'
+        'recibido',
+        'total',
+        'formaPago'
     ];
+
+    public function getDataAttribute($value)
+    {
+        return json_decode($value);
+    }
 }

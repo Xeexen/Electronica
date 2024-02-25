@@ -60,18 +60,6 @@
                                     </div>
 
                                     <div>
-                                        <x-input-label for="impuesto" :value="__('Impuesto')" />
-
-                                        <x-select id="impuesto" wire:model.defer="producto.impuesto"
-                                            class="block w-full mt-1 sm:text-sm" rows="3"
-                                            :placeholder="__('Enter product excerpt')">
-                                            <option value="">{{ __('Seleccione') }}</option>
-                                            <option value="0.12">{{ __('12%') }}</option>
-                                            <option value="0.00">{{ __('0%') }}</option>
-                                        </x-select>
-                                        <x-input-error for="producto.impuesto" class="mt-2" />
-                                    </div>
-                                    <div>
                                         <x-input-label for="categoria" :value="__('Categoria')" />
 
                                         <x-select wire:model="producto.categoria" wire:change='listaSubcategoria'

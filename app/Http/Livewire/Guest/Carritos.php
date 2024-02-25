@@ -10,7 +10,7 @@ use App\Models\Subcategoria;
 
 class Carritos extends Component
 {
-    public $carrito, $categorias, $subcategoria, $productos, $total;
+    public $carrito, $categorias, $subcategorias, $productos, $total;
 
     public function mount()
     {
@@ -18,21 +18,24 @@ class Carritos extends Component
 
         $this->productos = Producto::whereIn('id', $this->carrito->pluck('producto_id'))->get();
 
-        $this->categorias = Categoria::all();
+        $this->categorias = Categoria::whereIn('id', $this->productos->pluck('categoria'))->get();
 
-        $this->subcategoria = Subcategoria::all();
+        $this->subcategorias = Subcategoria::whereIn('id', $this->productos->pluck('subcategoria'))->get();
 
+        // dd($this->categorias);
         $this->total = 0;
-        
-        foreach ($this->carrito as $carro){
-            foreach($this->productos as $producto){
-                if($carro->producto_id === $producto->id)
-                $this->total = $carro->cantidad * $producto->precio;
+
+        foreach ($this->carrito as $carro) {
+            foreach ($this->productos as $producto) {
+                if ($carro->producto_id === $producto->id) {
+                    $subtotal = $carro->cantidad * $producto->precio;
+                    $this->total += $subtotal;
+                }
             }
         }
     }
 
-    
+
 
     public function render()
     {

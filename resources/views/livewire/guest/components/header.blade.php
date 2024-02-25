@@ -70,7 +70,7 @@
                         </a>
                     </div>
                     <div class="flow-root">
-                        <a href="{{ route('customer.orders.list') }}" class="block p-2 -m-2 font-medium text-slate-900">
+                        <a href="{{ route('customer.ordenes.lista') }}" class="block p-2 -m-2 font-medium text-slate-900">
                             {{ __('Ordenes') }}
                         </a>
                     </div>

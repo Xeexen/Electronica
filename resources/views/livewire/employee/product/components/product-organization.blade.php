@@ -5,15 +5,15 @@
 >
     <x-card class="overflow-hidden">
         <x-slot:header>
-            <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                <div class="ml-4 mt-2">
+            <div class="flex flex-wrap items-center justify-between -mt-2 -ml-4 sm:flex-nowrap">
+                <div class="mt-2 ml-4">
                     <h3 class="text-base font-medium text-slate-900 dark:text-slate-200">
                         {{ __('Collection') }}
                     </h3>
                 </div>
                 <div
                     x-show="dirty"
-                    class="ml-4 mt-2 flex-shrink-0"
+                    class="flex-shrink-0 mt-2 ml-4"
                 >
                     <button
                         wire:target="save"
@@ -27,7 +27,7 @@
             </div>
         </x-slot:header>
         <x-slot:content class="-mt-5">
-            <div class="-mx-4 -mb-5 border-t border-slate-300 max-h-72 overflow-y-auto sm:-mx-6 dark:border-slate-200/20">
+            <div class="-mx-4 -mb-5 overflow-y-auto border-t border-slate-300 max-h-72 sm:-mx-6 dark:border-slate-200/20">
                 @if($this->collections->count())
                     <ul class="divide-y divide-slate-200 dark:divide-slate-200/10">
                         @foreach($this->collections as $collection)
@@ -36,13 +36,13 @@
                                     onclick="event.preventDefault(); document.querySelector('#collection-{{ $collection->id }}').click()"
                                     class="absolute inset-0 cursor-pointer"
                                 ></span>
-                                <div class="min-w-0 flex-1 text-sm">
+                                <div class="flex-1 min-w-0 text-sm">
                                     <x-input-label
                                         for="collection-{{ $collection->id }}"
                                         :value="$collection->title"
                                     />
                                 </div>
-                                <div class="ml-3 flex items-center h-5">
+                                <div class="flex items-center h-5 ml-3">
                                     <x-input
                                         x-model.number="selected"
                                         wire:model.defer="selectedCollections"
@@ -56,7 +56,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <p class="my-6 text-center text-sm">
+                    <p class="my-6 text-sm text-center">
                         {{ __('No collections available.') }}
                     </p>
                 @endif

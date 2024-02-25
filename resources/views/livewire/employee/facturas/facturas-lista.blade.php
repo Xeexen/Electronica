@@ -85,7 +85,7 @@
                                             class="relative px-3 py-4 text-sm text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
                                             <span class="text-gray-500">
                                                 @foreach ($clientes as $cliente)
-                                                @if ($cliente->id === $factura->id)
+                                                @if ($cliente->id === $factura->cliente_id)
                                                 {{ $cliente->nombre }}
                                                 @endif
                                                 @endforeach

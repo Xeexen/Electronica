@@ -1,7 +1,7 @@
 <div>
     <!-- Meta title & description -->
     <x-slot:title>
-        {{ __('Facturas') }}
+        {{ __('Ordenes En Pagina') }}
     </x-slot:title>
 
     <!-- Page title & actions -->
@@ -15,27 +15,6 @@
 
     <!-- Page content -->
     <div class="p-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <x-card>
-            <x-slot:content>
-                <div class="max-w-lg mx-auto text-center">
-                    <x-heroicon-o-inbox-arrow-down class="w-12 h-12 mx-auto text-slate-400" />
-
-                    <h3 class="mt-2 text-lg font-medium text-slate-900 dark:text-slate-200">
-                        {{ __('Tus Facturas!') }}
-                    </h3>
-
-                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                        {{ __('Las facturas que tengas se mostraran aqui!') }}
-                    </p>
-                    <div class="mt-6">
-                        <a href="{{route('employee.factura.crear')}}" class="btn btn-primary">
-                            <x-heroicon-m-plus class="w-5 h-5 mr-2 -ml-1" />
-                            {{ __('Crear Factura') }}
-                        </a>
-                    </div>
-                </div>
-            </x-slot:content>
-        </x-card>
         <x-card class="overflow-hidden">
 
             <x-slot:content>
@@ -55,7 +34,7 @@
                                     <tr>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
-                                            {{ __('ID') }}
+                                            {{ __('Numero') }}
                                         </th>
                                         <th scope="col"
                                             class="px-3 py-4 text-sm font-semibold tracking-wide text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
@@ -67,25 +46,25 @@
                                         </th>
                                         <th scope="col"
                                             class="py-4 pl-3 pr-4 text-sm font-semibold tracking-wide text-right text-slate-900 whitespace-nowrap sm:pr-6 dark:text-slate-200">
-                                            {{ __('Fecha') }}
+                                            {{ __('Fecha y Hora') }}
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 dark:divide-slate-200/10">
-                                    @forelse($facturas as $factura)
+                                    @forelse($ordenes as $orden)
                                     <tr wire:loading.class.delay="opacity-50"
                                         class="relative hover:bg-slate-50 dark:hover:bg-slate-800/75">
                                         <td
                                             class="relative px-3 py-4 text-sm font-medium text-left text-slate-900 whitespace-nowrap tabular-nums dark:text-slate-200">
                                             <label class="hover:text-sky-600 dark:hover:text-sky-400">
-                                                {{ $factura->id }}
+                                                {{ $orden->numero }}
                                             </label>
                                         </td>
                                         <td
                                             class="relative px-3 py-4 text-sm text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
                                             <span class="text-gray-500">
                                                 @foreach ($clientes as $cliente)
-                                                @if ($cliente->id === $factura->id)
+                                                @if ($orden->cliente_id === $cliente->id)
                                                 {{ $cliente->nombre }}
                                                 @endif
                                                 @endforeach
@@ -93,11 +72,11 @@
                                         </td>
                                         <td
                                             class="relative px-3 py-4 text-sm text-right text-slate-500 whitespace-nowrap tabular-nums dark:text-slate-400">
-                                            <x-money :amount="$factura->total" />
+                                            <x-money :amount="$orden->total" />
                                         </td>
                                         <td
                                             class="py-4 pl-3 pr-4 text-sm text-right text-slate-500 whitespace-nowrap tabular-nums sm:pr-6 dark:text-slate-400">
-                                            {{ $factura->created_at }}
+                                            {{ $orden->created_at }}
                                         </td>
                                     </tr>
                                     @empty

@@ -25,7 +25,6 @@ class ProductoCrear extends Component
         'producto.categoria' => 'required',
         'producto.subcategoria' => 'required',
         'producto.precio' => 'required|max:8',
-        'producto.impuesto' => 'required',
     ];
 
     public function mount()
@@ -59,6 +58,8 @@ class ProductoCrear extends Component
         }
 
         $this->producto->imagen = $path;
+
+        $this->producto->impuesto = 0.12;
 
         $this->producto->unidades = 0;
 

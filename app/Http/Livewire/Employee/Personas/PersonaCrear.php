@@ -56,6 +56,12 @@ class PersonaCrear extends Component
 
         $this->persona->provincia = $this->provincia;
         $this->persona->save();
+
+        $this->flash('success', 'Se creo el contacto!', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
         return redirect()->to(route('personas'));
     }
 
