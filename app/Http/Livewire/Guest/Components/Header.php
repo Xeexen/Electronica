@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Guest\Components;
 
 use App\Models\Cart;
 use App\Models\Menu;
+use App\Models\Carrito;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\MenuItem;
@@ -13,8 +14,8 @@ use App\Settings\LayoutSetting;
 
 class Header extends Component
 {
-    public $itemsCount = 0;
-    public $categorias, $subcategorias; 
+    public $items = 0;
+    public $categorias, $subcategorias,$carrito; 
 
     protected $listeners = ['refresh'];
 
@@ -22,7 +23,8 @@ class Header extends Component
     {
         $this->categorias = Categoria::all();
         $this->subcategorias = Subcategoria::all();
-        $this->itemsCount = $this->cart->items_sum_quantity ?? 0;
+        $this->carrito = Carrito::where('sesion', session()->getId())->get();
+        $this->items = $this->carrito->count() ?? 0;
     }
 
     public function refresh()

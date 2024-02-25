@@ -46,7 +46,8 @@
                     <div class="flex items-end p-6 sm:absolute sm:inset-0">
                         <div>
                             <h3 class="text-lg font-semibold text-white">
-                                <a href="">
+                                <a
+                                    href="{{ route('guest.articulos.lista', ['id' => $subcategoria->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria]) }}">
                                     <span class="absolute inset-0"></span>
                                     {{ $subcategoria->subcategoria }}
                                 </a>
@@ -56,10 +57,6 @@
                 </div>
                 @endforeach
             </div>
-
-            {{-- <div class="mt-10">
-                {{ $collections->links() }}
-            </div> --}}
         </div>
     </main>
 </div>

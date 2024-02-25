@@ -219,7 +219,7 @@
                         <div class="flex lg:ml-6">
                             <button x-on:click="$dispatch('open-search')"
                                 class="p-2 text-slate-400 hover:text-slate-500">
-                                <span class="sr-only">{{ __('Search') }}</span>
+                                <span class="sr-only">{{ __('Buscar') }}</span>
                                 <x-heroicon-o-magnifying-glass class="w-6 h-6" />
                             </button>
                         </div>
@@ -230,7 +230,7 @@
                                 <x-heroicon-o-shopping-cart
                                     class="flex-shrink-0 w-6 h-6 text-slate-400 group-hover:text-slate-500" />
                                 <span class="ml-2 text-sm font-medium text-slate-700 group-hover:text-slate-800">{{
-                                    $itemsCount ?? 0 }}</span>
+                                    $items ?? 0 }}</span>
                                 <span class="sr-only">{{ __('items in cart, view cart') }}</span>
                             </a>
                         </div>
