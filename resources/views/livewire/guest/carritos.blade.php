@@ -31,12 +31,14 @@
                     </h2>
 
                     <ul role="list" class="border-t border-b divide-y divide-slate-200 border-slate-200">
-                        @foreach($carrito as $producto)
+                        @foreach($carrito as $carro)
+                        @foreach ($productos as $producto)
+                        @if ($producto->id === $carro->producto_id)
+
                         <li class="flex py-6">
                             <div class="flex-shrink-0 border rounded-md border-slate-200">
                                 @if($producto->imagen)
-                                {{ $producto->imagen->attributes(['alt' => $producto->nombre, 'class' => 'h-24 w-24
-                                rounded-md object-cover object-center sm:h-32 sm:w-32']) }}
+                                {{ $producto->imagen }}
                                 @else
                                 <div class="relative w-24 h-24 rounded-md bg-slate-100 sm:h-32 sm:w-32">
                                     <x-heroicon-o-camera
@@ -49,43 +51,45 @@
                                 <div>
                                     <div class="flex justify-between">
                                         <h4 class="text-sm">
+                                            @foreach ($categorias as $categoria)
+                                            @if ($categoria === $producto->categoria)
+                                            @foreach ($categorias as $categoria)
+                                            @if ($subcategoria === $producto->subcategoria)
                                             <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => 
-                                            , 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
+                                                            $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
                                                 class="font-medium text-slate-700 hover:text-slate-800">
                                                 {{ $producto->nombre }}
                                             </a>
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @endforeach
                                         </h4>
                                         <p class="ml-4 text-sm font-medium text-slate-900">
-                                            <x-money :amount="$item->price" :currency="config('app.currency')" />
+                                            <x-money :amount="$producto->precio" :currency="config('app.currency')" />
                                         </p>
-                                    </div>
-                                    @if($item->variant->variantAttributes->count())
-                                    <ul class="mt-1 space-x-2 text-sm divide-x divide-slate-200 text-slate-500">
-                                        @foreach($item->variant->variantAttributes as $attribute)
-                                        <li @class(['inline', 'pl-2'=> !$loop->first])>{{ $attribute->optionValue->label
-                                            }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
-                                </div>
 
+                                    </div>
+                                </div>
                                 <div class="flex items-end justify-between flex-1 mt-4">
                                     <div>
                                         <x-input-label for="quantity" class="sr-only" :value="__('Quantity')" />
                                         <x-input
-                                            wire:change="updateCartItemQuantity({{ $item->id }}, $event.target.value)"
-                                            type="number" name="quantity" value="{{ $item->quantity }}" id="quantity"
+                                            wire:change="updateCartItemQuantity({{ $carro->id }}, $event.target.value)"
+                                            type="number" name="quantity" value="{{ $carro->cantidad }}" id="quantity"
                                             class="w-16 text-center no-spinners sm:text-sm" />
                                     </div>
                                     <div class="ml-4">
-                                        <button wire:click.prevent="removeCartItem({{ $item->id }})" type="button"
+                                        <button wire:click.prevent="removeCartItem({{ $carro->id }})" type="button"
                                             class="btn btn-link">
-                                            <span>{{ __('Remove') }}</span>
+                                            <span>{{ __('Eliminar') }}</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        @endif
+                        @endforeach
                         @endforeach
                     </ul>
                 </section>
@@ -101,24 +105,24 @@
                                     {{ __('Subtotal') }}
                                 </dt>
                                 <dd class="ml-4 text-base font-medium text-slate-900">
-                                    <x-money :amount="$cart->subtotal" :currency="config('app.currency')" />
+                                    <x-money :amount="$total" :currency="config('app.currency')" />
                                 </dd>
                             </div>
                         </dl>
                         <p class="mt-1 text-sm text-slate-500">
-                            {{ __('Shipping and taxes will be calculated at checkout.') }}
+                            {{ __('Los impuestos seran calculados en el comprobante.') }}
                         </p>
                     </div>
 
                     <div class="mt-10">
-                        <a href="{{ route('guest.checkout') }}" class="w-full btn btn-primary btn-xl">
-                            {{ __('Checkout') }}
+                        <a href="{{ route('guest.orden.crear') }}" class="w-full btn btn-primary btn-xl">
+                            {{ __('Pedido') }}
                         </a>
                     </div>
 
                     <div class="mt-6 text-sm text-center">
                         <p>
-                            {{ __('or') }}
+                            {{ __('o') }}
                             <a href="{{ route('guest.products.list') }}" class="btn btn-link">
                                 {{ __('Continue Shopping') }}
                                 <span aria-hidden="true"> &rarr;</span>

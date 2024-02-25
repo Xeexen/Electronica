@@ -6,6 +6,7 @@ use App\Http\Livewire\Guest\ArticulosLista;
 use App\Http\Livewire\Guest\ListaCategorias;
 use App\Http\Livewire\Guest\ProductoDetalle;
 use App\Http\Livewire\Guest\ListaSubcategorias;
+use App\Http\Livewire\Guest\OrdenDetalleCliente;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::group(['as' => 'guest.', 'middleware' => \App\Http\Middleware\RedirectIfN
     Route::get('/cart', \App\Http\Livewire\Guest\ShoppingCart::class)->name('cart');
     Route::get('/carrito', Carritos::class)->name('carrito');
     Route::get('/checkout', \App\Http\Livewire\Guest\Checkout::class)->name('checkout');
+    Route::get('/orden', OrdenDetalleCliente::class)->name('orden.crear');
     Route::get('/orders/{order}', \App\Http\Livewire\Guest\OrderDetail::class)->name('orders.detail')->middleware('signed');
     Route::get('/blog', \App\Http\Livewire\Guest\Blog\ArticleList::class)->name('blog.articles.list');
     Route::get('/blog/{article:slug}', \App\Http\Livewire\Guest\Blog\ArticleDetail::class)->name('blog.articles.detail');

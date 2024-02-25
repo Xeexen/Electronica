@@ -157,7 +157,7 @@
                                                         @foreach ($subcategorias as $subcategoria)
                                                         @if ($subcategoria->categoria_id === $categoria->id)
                                                         <li class="flex">
-                                                            <a href="" class="hover:text-slate-800">
+                                                            <a href="{{ route('guest.articulos.lista', ['id' => $subcategoria->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria]) }}" class="hover:text-slate-800">
                                                                 {{ $subcategoria->subcategoria }}
                                                             </a>
                                                         </li>
@@ -226,7 +226,7 @@
 
                         <!-- Cart -->
                         <div class="flow-root ml-4 lg:ml-6">
-                            <a href="{{ route('guest.cart') }}" class="flex items-center p-2 -m-2 group">
+                            <a href="{{ route('guest.carrito') }}" class="flex items-center p-2 -m-2 group">
                                 <x-heroicon-o-shopping-cart
                                     class="flex-shrink-0 w-6 h-6 text-slate-400 group-hover:text-slate-500" />
                                 <span class="ml-2 text-sm font-medium text-slate-700 group-hover:text-slate-800">{{
