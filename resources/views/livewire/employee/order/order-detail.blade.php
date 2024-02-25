@@ -6,7 +6,7 @@
 
     <!-- Page title & actions -->
     <div class="flex px-4 sm:px-6 lg:px-8">
-        <div class="mr-2 flex-shrink-0">
+        <div class="flex-shrink-0 mr-2">
             <a
                 href="{{ route('employee.orders.list') }}"
                 class="btn btn-default btn-xs"
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="mt-2 flex items-center text-sm text-slate-500 dark:text-slate-400">
+            <div class="flex items-center mt-2 text-sm text-slate-500 dark:text-slate-400">
                 <span>{{ $order->created_at->toDayDateTimeString() }}</span>
             </div>
         </div>
@@ -46,7 +46,7 @@
     <!-- Page content -->
     <div class="p-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="grid grid-cols-3 gap-6">
-            <div class="col-span-3 xl:col-span-2 space-y-6">
+            <div class="col-span-3 space-y-6 xl:col-span-2">
                 @if($order->shipping_status->value != \App\Enums\ShippingStatus::SHIPPED->value)
                     <livewire:employee.order.components.order-items :order="$order" />
                 @endif
@@ -62,7 +62,7 @@
                 <livewire:employee.order.components.order-payment-detail :order="$order" />
             </div>
 
-            <div class="mt-6 col-span-3 xl:col-span-1 space-y-6 xl:mt-0">
+            <div class="col-span-3 mt-6 space-y-6 xl:col-span-1 xl:mt-0">
                 <livewire:employee.order.components.order-notes :order="$order" />
 
                 <livewire:employee.order.components.order-customer-detail :order="$order" />

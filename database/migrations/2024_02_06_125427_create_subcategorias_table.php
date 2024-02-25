@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subcategorias', function (Blueprint $table) {
             $table->id();
             $table->string('subcategoria');
-            $table->foreignId('tenant_id')->references('id')->on('categorias');
+            $table->foreignId('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });
     }

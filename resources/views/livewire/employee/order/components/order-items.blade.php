@@ -2,13 +2,13 @@
     @if($physicalItems->count())
         <x-card>
             <x-slot:header>
-                <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                    <div class="ml-4 mt-2">
+                <div class="flex flex-wrap items-center justify-between -mt-2 -ml-4 sm:flex-nowrap">
+                    <div class="mt-2 ml-4">
                         <h3 class="text-base font-medium text-slate-900 dark:text-slate-200">
                             {{ __('Unshipped') }}
                         </h3>
                     </div>
-                    <div class="ml-4 mt-2 flex-shrink-0">
+                    <div class="flex-shrink-0 mt-2 ml-4">
                         <a
                             href="{{ route('employee.orders.shipments.create', ['order' => $order, 'type' => 'physical']) }}"
                             class="btn btn-link"
@@ -26,24 +26,24 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-center text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-center uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('QTY') }}
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-right text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-right uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('Price') }}
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-right text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-right uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('Subtotal') }}
                                     </th>
@@ -52,16 +52,16 @@
                             <tbody class="divide-y divide-slate-200 dark:divide-slate-200/10">
                                 @foreach($physicalItems as $item)
                                     <tr>
-                                        <td class="px-3 py-4 sm:px-6 w-full max-w-sm text-sm text-slate-500 dark:text-slate-400">
+                                        <td class="w-full max-w-sm px-3 py-4 text-sm sm:px-6 text-slate-500 dark:text-slate-400">
                                             <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0">
+                                                <div class="flex-shrink-0 w-10 h-10">
                                                     <img
-                                                        class="h-10 w-10 rounded object-center object-cover"
+                                                        class="object-cover object-center w-10 h-10 rounded"
                                                         src="{{ $item->variant->hasMedia('image') ? $item->variant->getFirstMediaUrl('image', 'thumb') : $item->variant->product->getFirstMediaUrl('gallery', 'thumb') }}"
                                                         alt="{{ $item->name }}"
                                                     >
                                                 </div>
-                                                <div class="ml-4 max-w-xs flex flex-col">
+                                                <div class="flex flex-col max-w-xs ml-4">
                                                     <div class="font-medium text-slate-900 hover:text-sky-600 truncate ... dark:text-slate-200 dark:hover:text-sky-400">
                                                         <a href="{{ route('employee.products.detail', $item->variant->product) }}">{{ $item->name }}</a>
                                                     </div>
@@ -80,10 +80,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-center text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-center sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             {{ $item->quantity - ($item->total_shipped + $item->total_removed + $item->total_shipped_refunded) }}
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-right sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             @if($item->discount)
                                                 <span class="block text-xs line-through">
                                                     <x-money
@@ -102,7 +102,7 @@
                                                 />
                                             @endif
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-right sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             <x-money
                                                 :amount="$item->price * ($item->quantity - ($item->total_shipped + $item->total_removed + $item->total_shipped_refunded)) - $item->discount?->discounted_amount"
                                                 :currency="config('app.currency')"
@@ -119,15 +119,15 @@
     @endif
 
     @if($digitalItems->count())
-        <x-card class="-mx-4 sm:-mx-0 overflow-hidden">
+        <x-card class="-mx-4 overflow-hidden sm:-mx-0">
             <x-slot:header>
-                <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                    <div class="ml-4 mt-2">
+                <div class="flex flex-wrap items-center justify-between -mt-2 -ml-4 sm:flex-nowrap">
+                    <div class="mt-2 ml-4">
                         <h3 class="text-base font-medium text-slate-900 dark:text-slate-200">
                             {{ __('Unshipped') }}
                         </h3>
                     </div>
-                    <div class="ml-4 mt-2 flex-shrink-0">
+                    <div class="flex-shrink-0 mt-2 ml-4">
                         <a
                             href="{{ route('employee.orders.shipments.create', ['order' => $order, 'type' => 'digital']) }}"
                             class="btn btn-link"
@@ -145,24 +145,24 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-center text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-center uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('QTY') }}
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-right text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-right uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('Price') }}
                                     </th>
                                     <th
                                         scope="col"
-                                        class="px-3 py-3 sm:px-6 text-right text-xs font-medium text-slate-500 uppercase tracking-wider dark:text-slate-400"
+                                        class="px-3 py-3 text-xs font-medium tracking-wider text-right uppercase sm:px-6 text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('Subtotal') }}
                                     </th>
@@ -171,16 +171,16 @@
                             <tbody class="divide-y divide-slate-200 dark:divide-slate-200/10">
                                 @foreach($digitalItems as $item)
                                     <tr>
-                                        <td class="px-3 py-4 sm:px-6 w-full max-w-sm text-sm text-slate-500 dark:text-slate-400">
+                                        <td class="w-full max-w-sm px-3 py-4 text-sm sm:px-6 text-slate-500 dark:text-slate-400">
                                             <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0">
+                                                <div class="flex-shrink-0 w-10 h-10">
                                                     <img
-                                                        class="h-10 w-10 rounded object-center object-cover"
+                                                        class="object-cover object-center w-10 h-10 rounded"
                                                         src="{{ $item->variant->hasMedia('image') ? $item->variant->getFirstMediaUrl('image', 'thumb') : $item->variant->product->getFirstMediaUrl('gallery', 'thumb') }}"
                                                         alt="{{ $item->name }}"
                                                     >
                                                 </div>
-                                                <div class="ml-4 max-w-xs flex flex-col">
+                                                <div class="flex flex-col max-w-xs ml-4">
                                                     <div class="font-medium text-slate-900 hover:text-sky-600 truncate ... dark:text-slate-200 dark:hover:text-sky-400">
                                                         <a href="{{ route('employee.products.detail', $item->variant->product) }}">{{ $item->name }}</a>
                                                     </div>
@@ -199,10 +199,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-center text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-center sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             {{ $item->quantity - ($item->shipment_items_sum_quantity + $item->total_removed) }}
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-right sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             @if($item->discount)
                                                 <span class="block text-xs line-through">
                                                     <x-money
@@ -221,7 +221,7 @@
                                                 />
                                             @endif
                                         </td>
-                                        <td class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-slate-500 tabular-nums dark:text-slate-400">
+                                        <td class="px-3 py-4 text-sm text-right sm:px-6 whitespace-nowrap text-slate-500 tabular-nums dark:text-slate-400">
                                             <x-money
                                                 :amount="$item->price * ($item->quantity - ($item->shipment_items_sum_quantity + $item->refund_items_sum_quantity)) - $item->discount?->discounted_amount"
                                                 :currency="config('app.currency')"
@@ -232,7 +232,7 @@
                                 <tr>
                                     <td
                                         colspan="4"
-                                        class="px-3 py-4 sm:px-6 whitespace-nowrap w-full max-w-sm text-sm text-slate-500 dark:text-slate-400"
+                                        class="w-full max-w-sm px-3 py-4 text-sm sm:px-6 whitespace-nowrap text-slate-500 dark:text-slate-400"
                                     >
                                         {{ __('Shipping not required.') }}
                                     </td>

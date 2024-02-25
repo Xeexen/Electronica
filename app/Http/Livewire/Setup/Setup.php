@@ -11,7 +11,7 @@ class Setup extends Component
 
     public function mount()
     {
-        $this->seo()->setTitle(trans('Setup'));
+        $this->seo()->setTitle(trans('Primeros pasos'));
 
         $this->seo()->setDescription(trans('Setup your store with ease. Our setup wizard will guide you through the process of setting up your store.'));
     }
