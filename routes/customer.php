@@ -13,7 +13,6 @@ Route::group([
     'middleware' => ['auth:customer', RedirectIfNotSetup::class],
 ], function () {
     Route::get('/profile', \App\Http\Livewire\Customer\Profile\ProfileManager::class)->name('profile');
-    Route::get('/orders', OrderList::class)->name('orders.list');
     Route::get('/ordenes', OrdenLista::class)->name('ordenes.lista');
     Route::get('/orders/{order}', \App\Http\Livewire\Customer\Order\OrderDetail::class)->name('orders.detail');
 });

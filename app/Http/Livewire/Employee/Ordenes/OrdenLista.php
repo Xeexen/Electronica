@@ -16,7 +16,6 @@ class OrdenLista extends Component
         $this->clientes = Persona::whereIn('id', $this->ordenes->pluck('cliente_id'))->get();
     }
 
-
     public function render()
     {
         return view('livewire.employee.ordenes.orden-lista')->layout('layouts.admin');

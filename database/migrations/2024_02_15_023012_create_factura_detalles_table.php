@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('producto_id')->references('id')->on('productos');
             $table->string('cantidad');
             $table->string('precio');
-            $table->string('descuento');
+            $table->string('descuento')->nullable();
             $table->string('subtotal');
             $table->foreignId('factura_id')->references('id')->on('facturas');
             $table->timestamps();

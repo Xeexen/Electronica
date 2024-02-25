@@ -123,7 +123,7 @@
                     <div class="mt-6 text-sm text-center">
                         <p>
                             {{ __('o') }}
-                            <a href="{{ route('guest.products.list') }}" class="btn btn-link">
+                            <a href="{{ route('guest.categorias.lista') }}" class="btn btn-link">
                                 {{ __('Continue Shopping') }}
                                 <span aria-hidden="true"> &rarr;</span>
                             </a>

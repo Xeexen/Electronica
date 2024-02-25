@@ -61,7 +61,7 @@
                                             class="relative px-3 py-4 text-sm font-medium text-left text-slate-900 whitespace-nowrap dark:text-slate-200">
                                             <div class="flex items-center">
                                                 <div class="ml-4">
-                                                    <a href="{{ route('employee.customers.detail', $customer) }}"
+                                                    <a href=""
                                                         class="inline-flex items-center truncate hover:text-sky-600 dark:hover:text-sky-400">
                                                         {{ $customer->nombre }}
                                                     </a>

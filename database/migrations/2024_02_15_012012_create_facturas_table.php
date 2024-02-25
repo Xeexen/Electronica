@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('puntoEmision', 3);
             $table->string('secuencial', 9);
             $table->string('codigoAcceso', 49);
-            $table->string('descuento');
+            $table->string('descuento')->nullable();
             $table->string('subtotal');
             $table->string('total');
             $table->foreignId('cliente_id')->references('id')->on('personas');

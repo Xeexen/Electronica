@@ -21,7 +21,7 @@ class ProductoCrear extends Component
         'producto.nombre' => 'required|max:20',
         'producto.codigo' => 'required|max:20',
         'imagen' => 'nullable|mimes:jpg, png, webp, jpeg',
-        'producto.descripcion' => 'required|max:50',
+        'producto.descripcion' => 'required|max:250',
         'producto.categoria' => 'required',
         'producto.subcategoria' => 'required',
         'producto.precio' => 'required|max:8',
@@ -61,7 +61,7 @@ class ProductoCrear extends Component
 
         $this->producto->impuesto = 0.12;
 
-        $this->producto->unidades = 0;
+        $this->producto->unidades = 30;
 
         $this->producto->save();
 

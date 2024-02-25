@@ -7,9 +7,11 @@ use App\Models\Persona;
 use Livewire\Component;
 use App\Models\Provincia;
 use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class PersonaCrear extends Component
 {
+    use LivewireAlert;
     public Persona $persona;
     public $provincias, $ciudades, $listaCiudades;
     public $cliente, $proveedor, $provincia;
@@ -62,7 +64,8 @@ class PersonaCrear extends Component
             'timer' => 3000,
             'toast' => true,
         ]);
-        return redirect()->to(route('personas'));
+        
+        return redirect()->to(route('employee.personas'));
     }
 
     public function render()

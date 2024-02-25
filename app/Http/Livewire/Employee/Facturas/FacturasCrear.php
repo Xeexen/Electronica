@@ -74,11 +74,6 @@ class FacturasCrear extends Component
                 (float)$this->subtotal_12  += (float)$producto['subtotal'];
             }
         }
-        foreach ($this->items as $producto0) {
-            if ($producto0['iva'] != "0.12") {
-                $this->subtotal_0 += (float)$producto0['subtotal'];
-            }
-        }
         foreach ($this->items as $descuento) {
             (float)$this->descuentoTotal += (float)$descuento['descuento'];
         }
@@ -152,6 +147,8 @@ class FacturasCrear extends Component
         $this->factura->codigoAcceso = $claveAcceso . $modulo;
 
         $this->factura->total = $this->total;
+
+        $this->factura->subtotal = $this->subtotales;
 
         $this->factura->descuento = $this->descuentoTotal;
 

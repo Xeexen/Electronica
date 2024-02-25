@@ -39,6 +39,8 @@ class ProductoDetalle extends Component
         $this->carrito->sesion = session()->getId();
 
         $this->carrito->save();
+
+        return redirect()->to(route('guest.carrito'));
     }
 
     public function render()

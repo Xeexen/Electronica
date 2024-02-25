@@ -141,7 +141,7 @@
                     <div class="flex items-center justify-between">
                         <dl>
                             <dt class="text-sm font-medium truncate text-slate-500">{{ __('Clientes') }}</dt>
-                            <dd class="mt-1 text-3xl font-semibold text-sky-500">Clientes</dd>
+                            <dd class="mt-1 text-3xl font-semibold text-sky-500"></dd>
                         </dl>
                         <div x-data="{
                                 init() {

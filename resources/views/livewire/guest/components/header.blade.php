@@ -70,7 +70,8 @@
                         </a>
                     </div>
                     <div class="flow-root">
-                        <a href="{{ route('customer.ordenes.lista') }}" class="block p-2 -m-2 font-medium text-slate-900">
+                        <a href="{{ route('customer.ordenes.lista') }}"
+                            class="block p-2 -m-2 font-medium text-slate-900">
                             {{ __('Ordenes') }}
                         </a>
                     </div>
@@ -157,7 +158,8 @@
                                                         @foreach ($subcategorias as $subcategoria)
                                                         @if ($subcategoria->categoria_id === $categoria->id)
                                                         <li class="flex">
-                                                            <a href="{{ route('guest.articulos.lista', ['id' => $subcategoria->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria]) }}" class="hover:text-slate-800">
+                                                            <a href="{{ route('guest.articulos.lista', ['id' => $subcategoria->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria]) }}"
+                                                                class="hover:text-slate-800">
                                                                 {{ $subcategoria->subcategoria }}
                                                             </a>
                                                         </li>
@@ -199,7 +201,7 @@
                                     <x-dropdown-link href="{{ route('customer.profile') }}">
                                         {{ __('Perfil') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="{{ route('customer.orders.list') }}">
+                                    <x-dropdown-link href="{{ route('customer.ordenes.lista') }}">
                                         {{ __('Ordenes') }}
                                     </x-dropdown-link>
                                     <hr class="border-slate-200" />
