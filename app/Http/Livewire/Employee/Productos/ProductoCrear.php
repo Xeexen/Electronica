@@ -45,17 +45,21 @@ class ProductoCrear extends Component
         $this->validate();
 
         if ($this->imagen) {
-
             $customFileName = Str::slug($this->producto->codigo) . '.webp';
             $this->imagen->storeAs('public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria, $customFileName);
 
             $webpImage = Image::make(storage_path('app/public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName));
+            $webpImage->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
             $webpImage->encode('webp', 90)->save();
 
             $path = 'storage/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName;
         } else {
             $path = null;
         }
+
 
         $this->producto->imagen = $path;
 

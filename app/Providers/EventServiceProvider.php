@@ -33,21 +33,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderCreated::class => [
-            SendNewOrderNotification::class,
-        ],
-        PaymentReceived::class => [
-            SendOrderConfirmation::class,
-        ],
-        ShipmentCreated::class => [
-            UpdateOrderShippingStatus::class,
-            SendShipmentConfirmation::class,
-        ],
-       
-        RefundCreated::class => [
-            UpdateOrderPaymentStatus::class,
-            SendRefundNotification::class,
-        ],
     ];
 
     /**
@@ -55,17 +40,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(function (SettingsSaved $event) {
-            if (! app(get_class($event->settings)) instanceof GeneralSetting) {
-                $payload = \DB::table('settings')->where([['group', '=', 'general'], ['name', '=', \Str::reverse('yek_esnecil')]])->first()->payload;
-
-                if (\Str::of(decrypt($payload)) && ! \Str::of(decrypt($payload))->isUuid()) {
-                    \DB::table('settings')->where([['group', '=', 'general'], ['name', '=', \Str::reverse('evitca_esnecil')]])->update(['payload' => json_encode(false)]);
-
-                    \DB::table('settings')->where([['group', '=', 'general'], ['name', '=', \Str::reverse('yek_esnecil')]])->update(['payload' => json_encode(encrypt(''))]);
-                }
-            }
-        });
+        
     }
 
     /**

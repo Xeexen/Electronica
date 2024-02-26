@@ -216,11 +216,15 @@
                             @if ($producto->id === $carro->producto_id)
                             <li class="flex items-center px-4 py-6 space-x-4 sm:px-6">
                                 <div class="relative flex flex-shrink-0 border rounded-md border-slate-200">
-
+                                    @if($producto->imagen)
+                                    <img class='object-contain object-center w-full h-full' src="{{ asset($producto->imagen) }}" alt="">
+                                    @else
                                     <div class="relative w-20 h-20 rounded-md bg-slate-100">
                                         <x-heroicon-o-camera
                                             class="absolute inset-0 w-12 h-full mx-auto text-slate-400 sm:w-16" />
                                     </div>
+                                    @endif
+
                                     <span
                                         class="absolute -top-3 -right-2 whitespace-nowrap rounded-full bg-slate-400 px-2 py-0.5 text-center text-xs font-medium leading-5 text-white ring-1 ring-inset ring-slate-400 tabular-nums">{{
                                         $carro->cantidad }}</span>

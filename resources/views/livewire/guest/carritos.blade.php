@@ -21,13 +21,13 @@
             </div>
             @else
             <h1 class="text-3xl font-bold tracking-tight text-center text-slate-900 sm:text-4xl">
-                {{ __('Shopping Cart') }}
+                {{ __('Carrito de Compras') }}
             </h1>
 
             <div class="mt-12">
                 <section aria-labelledby="cart-heading">
                     <h2 id="cart-heading" class="sr-only">
-                        {{ __('Items in your shopping cart') }}
+                        {{ __('Items en tu carrito:') }}
                     </h2>
 
                     <ul role="list" class="border-t border-b divide-y divide-slate-200 border-slate-200">
@@ -37,56 +37,58 @@
 
                         <li class="flex py-6">
                             <div class="flex-shrink-0 border rounded-md border-slate-200">
-                                {{-- @if($producto->imagen)
-                                {{ $producto->imagen }}
-                                @else --}}
+                                @if($producto->imagen)
+                                <img class='object-cover object-center w-24 h-24 rounded-md sm:h-32 sm:w-32' src="{{ asset($producto->imagen) }}"></img>
+                                
+                                @else
                                 <div class="relative w-24 h-24 rounded-md bg-slate-100 sm:h-32 sm:w-32">
                                     <x-heroicon-o-camera
                                         class="absolute inset-0 w-16 h-full mx-auto text-slate-400 sm:w-24" />
                                 </div>
-                                {{-- @endif --}}
-                            </div>
+                                @endif
+                                </img>
 
-                            <div class="flex flex-col flex-1 ml-4 sm:ml-6">
-                                <div>
-                                    <div class="flex justify-between">
-                                        <h4 class="text-sm">
-                                            @foreach ($categorias as $categoria)
-                                            @if ($categoria->id == $producto->categoria)
-                                            @foreach ($subcategorias as $subcategoria)
-                                            @if ($subcategoria->id == $producto->subcategoria)
-                                            <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => 
-                                                            $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
-                                                class="font-medium text-slate-700 hover:text-slate-800">
-                                                {{ $producto->nombre }}
-                                            </a>
-                                            @endif
-                                            @endforeach
-                                            @endif
-                                            @endforeach
-                                        </h4>
-                                        <p class="ml-4 text-sm font-medium text-slate-900">
-                                            <x-money :amount="$producto->precio" :currency="config('app.currency')" />
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div class="flex items-end justify-between flex-1 mt-4">
+                                <div class="flex flex-col flex-1 ml-4 sm:ml-6">
                                     <div>
-                                        <x-input-label for="quantity" class="sr-only" :value="__('Quantity')" />
-                                        <x-input
-                                            wire:change="updateCartItemQuantity({{ $carro->id }}, $event.target.value)"
-                                            type="number" name="quantity" value="{{ $carro->cantidad }}" id="quantity"
-                                            class="w-16 text-center no-spinners sm:text-sm" />
+                                        <div class="flex justify-between">
+                                            <h4 class="text-sm">
+                                                @foreach ($categorias as $categoria)
+                                                @if ($categoria->id == $producto->categoria)
+                                                @foreach ($subcategorias as $subcategoria)
+                                                @if ($subcategoria->id == $producto->subcategoria)
+                                                <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => 
+                                                            $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
+                                                    class="font-medium text-slate-700 hover:text-slate-800">
+                                                    {{ $producto->nombre }}
+                                                </a>
+                                                @endif
+                                                @endforeach
+                                                @endif
+                                                @endforeach
+                                            </h4>
+                                            <p class="ml-4 text-sm font-medium text-slate-900">
+                                                <x-money :amount="$producto->precio"
+                                                    :currency="config('app.currency')" />
+                                            </p>
+
+                                        </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <button wire:click.prevent="borrar({{ $carro->id }})" type="button"
-                                            class="btn btn-link">
-                                            <span>{{ __('Eliminar') }}</span>
-                                        </button>
+                                    <div class="flex items-end justify-between flex-1 mt-4">
+                                        <div>
+                                            <x-input-label for="quantity" class="sr-only" :value="__('Quantity')" />
+                                            <x-input
+                                                wire:change="updateCartItemQuantity({{ $carro->id }}, $event.target.value)"
+                                                type="number" name="quantity" value="{{ $carro->cantidad }}"
+                                                id="quantity" class="w-16 text-center no-spinners sm:text-sm" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <button wire:click.prevent="borrar({{ $carro->id }})" type="button"
+                                                class="btn btn-link">
+                                                <span>{{ __('Eliminar') }}</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </li>
                         @endif
                         @endforeach

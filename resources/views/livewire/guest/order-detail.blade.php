@@ -5,7 +5,7 @@
     </x-slot:title>
 
     <div class="bg-white">
-        <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div class="max-w-3xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:px-8">
             <div class="max-w-xl">
                 <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
                     {{ __('Thanks for ordering') }}
@@ -13,7 +13,7 @@
                 <p class="mt-2 text-base text-slate-500">
                     {{ __('We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!') }}
                 </p>
-                <dl class="mt-12 grid flex-1 grid-cols-2 gap-6 text-sm sm:col-span-4 sm:grid-cols-4 lg:col-span-2">
+                <dl class="grid flex-1 grid-cols-2 gap-6 mt-12 text-sm sm:col-span-4 sm:grid-cols-4 lg:col-span-2">
                     <div>
                         <dt class="font-medium text-gray-900">{{ __('Order number') }}</dt>
                         <dd class="mt-1 font-medium text-sky-600">{{ $order->id }}</dd>
@@ -40,21 +40,21 @@
 
                 <ul
                     role="list"
-                    class="divide-y divide-slate-200 border-b border-slate-200"
+                    class="border-b divide-y divide-slate-200 border-slate-200"
                 >
                     @foreach($order->orderItems as $item)
                         <li class="py-4 sm:py-6">
                             <div class="flex items-center sm:items-stretch">
-                                <div class="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-slate-200 sm:h-40 sm:w-40">
+                                <div class="relative flex-shrink-0 w-20 h-20 overflow-hidden border rounded-md border-slate-200 sm:h-40 sm:w-40">
                                     @if($item->variant->hasMedia('image'))
                                         {{ $item->variant->getFirstMedia('image')('thumb_large')->attributes(['alt' => $item->product->name, 'class' => 'h-full w-full object-cover object-center']) }}
                                     @elseif($item->product->hasMedia('gallery'))
                                         {{ $item->product->getFirstMedia('gallery')('thumb_large')->attributes(['alt' => $item->product->name, 'class' => 'h-full w-full object-cover object-center']) }}
                                     @else
-                                        <x-heroicon-o-camera class="h-full w-16 absolute inset-0 mx-auto text-slate-400 sm:w-24" />
+                                        <x-heroicon-o-camera class="absolute inset-0 w-16 h-full mx-auto text-slate-400 sm:w-24" />
                                     @endif
                                 </div>
-                                <div class="ml-6 flex flex-col flex-1 justify-between text-sm">
+                                <div class="flex flex-col justify-between flex-1 ml-6 text-sm">
                                     <div>
                                         <div class="font-medium text-slate-900 sm:flex sm:justify-between">
                                             <h4>
@@ -77,8 +77,8 @@
                                         @endif
                                     </div>
                                     <div class="hidden mt-2 sm:flex">
-                                        <div class="flex items-center space-x-4 divide-x divide-slate-200 text-sm font-medium">
-                                            <div class="flex flex-1 justify-center">
+                                        <div class="flex items-center space-x-4 text-sm font-medium divide-x divide-slate-200">
+                                            <div class="flex justify-center flex-1">
                                                 <a
                                                     href="{{ route('guest.products.detail', $item->product) }}"
                                                     class="btn btn-link whitespace-nowrap"
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                         @if($item->variant->shipping_type === 'digital' && $item->shipmentItems->count())
-                                            <div class="flex flex-1 justify-center pl-4">
+                                            <div class="flex justify-center flex-1 pl-4">
                                                 <button
                                                     wire:click="downloadDigitalAttachment({{ $item->variant->id }})"
                                                     type="button"
@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                             <div class="mt-6 sm:hidden">
-                                <div class="mt-6 flex items-center space-x-4 divide-x divide-slate-200 border-t border-slate-200 pt-4 text-sm font-medium">
-                                    <div class="flex flex-1 justify-center">
+                                <div class="flex items-center pt-4 mt-6 space-x-4 text-sm font-medium border-t divide-x divide-slate-200 border-slate-200">
+                                    <div class="flex justify-center flex-1">
                                         <a
                                             href="{{ route('guest.products.detail', $item->product) }}"
                                             class="btn btn-link whitespace-nowrap"
@@ -121,7 +121,7 @@
                     <h3 class="sr-only">{{ __('Your information') }}</h3>
 
                     <h4 class="sr-only">{{ __('Addresses') }}</h4>
-                    <dl class="grid grid-cols-2 gap-x-6 py-10 text-sm">
+                    <dl class="grid grid-cols-2 py-10 text-sm gap-x-6">
                         <div>
                             <dt class="font-medium text-slate-900">{{ __('Shipping address') }}</dt>
                             <dd class="mt-2 text-slate-700">
@@ -193,7 +193,7 @@
                     </dl>
 
                     <h4 class="sr-only">{{ __('Payment') }}</h4>
-                    <dl class="grid grid-cols-2 gap-x-6 border-t border-slate-200 py-10 text-sm">
+                    <dl class="grid grid-cols-2 py-10 text-sm border-t gap-x-6 border-slate-200">
                         <div>
                             <dt class="font-medium text-slate-900">{{ __('Payment method') }}</dt>
                             <dd class="mt-2 text-slate-700">
@@ -210,7 +210,7 @@
 
                     <h3 class="sr-only">{{ __('Summary') }}</h3>
 
-                    <dl class="space-y-6 border-t border-slate-200 pt-10 text-sm">
+                    <dl class="pt-10 space-y-6 text-sm border-t border-slate-200">
                         <div class="flex justify-between">
                             <dt class="font-medium text-slate-900">{{ __('Subtotal') }}</dt>
                             <dd class="text-slate-700">
