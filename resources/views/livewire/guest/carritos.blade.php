@@ -6,16 +6,16 @@
                 <x-heroicon-o-shopping-cart class="w-24 h-24 mx-auto text-slate-400" />
 
                 <h3 class="mt-2 text-lg font-medium text-slate-900 dark:text-slate-200">
-                    {{ __('Your shopping cart is currently empty') }}
+                    {{ __('Tu carrito esta ahorita vacio!') }}
                 </h3>
 
                 <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                    {{ __('Before proceed to checkout you must add some products to your shopping cart.') }}
+                    {{ __('Antes de continuar debemos añadir Productos a tu carrito!.') }}
                 </p>
 
                 <div class="mt-6">
                     <a href="{{ route('guest.products.list') }}" class="btn btn-primary">
-                        {{ __('Continue shopping') }}
+                        {{ __('Continua Comprando') }}
                     </a>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                                             class="w-16 text-center no-spinners sm:text-sm" />
                                     </div>
                                     <div class="ml-4">
-                                        <button wire:click.prevent="removeCartItem({{ $carro->id }})" type="button"
+                                        <button wire:click.prevent="borrar({{ $carro->id }})" type="button"
                                             class="btn btn-link">
                                             <span>{{ __('Eliminar') }}</span>
                                         </button>
@@ -95,7 +95,7 @@
                 </section>
                 <section aria-labelledby="summary-heading" class="mt-10">
                     <h2 id="summary-heading" class="sr-only">
-                        {{ __('Order summary') }}
+                        {{ __('Items en el carrito') }}
                     </h2>
 
                     <div>
@@ -124,7 +124,7 @@
                         <p>
                             {{ __('o') }}
                             <a href="{{ route('guest.categorias.lista') }}" class="btn btn-link">
-                                {{ __('Continue Shopping') }}
+                                {{ __('Continua Comprando') }}
                                 <span aria-hidden="true"> &rarr;</span>
                             </a>
                         </p>
