@@ -6,25 +6,25 @@
 
     <!-- Page title & actions -->
     <div class="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
-        <div class="flex items-center flex-1 min-w-0 space-x-2">
+        <div class="min-w-0 flex flex-1 items-center space-x-2">
             <a
                 href="{{ route('employee.products.list') }}"
                 class="btn btn-default btn-xs"
             >
                 <x-heroicon-m-arrow-left class="w-5 h-5" />
             </a>
-            <h1 class="text-2xl font-medium truncate text-slate-900 dark:text-slate-100">
+            <h1 class="text-2xl font-medium text-slate-900 truncate dark:text-slate-100">
                 {{ $product->name }}
             </h1>
             <x-badge :type="$product->is_active ? 'success' : 'default'">
                 {{ $product->status->label() }}
             </x-badge>
         </div>
-        <div class="flex mt-4 sm:mt-0 sm:ml-4">
+        <div class="mt-4 flex sm:mt-0 sm:ml-4">
             <a
                 href="{{ route('guest.products.detail', $product) }}"
                 target="_blank"
-                class="w-full btn btn-outline-primary"
+                class="btn btn-outline-primary w-full"
             >
                 {{ __('Preview') }}
             </a>
@@ -32,9 +32,9 @@
     </div>
 
     <!-- Page content -->
-    <div class="p-4 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="p-4 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-3 gap-6">
-            <div class="col-span-3 space-y-6 xl:col-span-2">
+            <div class="col-span-3 xl:col-span-2 space-y-6">
                 <livewire:employee.product.components.product-information :product="$product" />
 
                 <livewire:employee.product.components.product-specification :product="$product" />
@@ -67,7 +67,7 @@
                 <livewire:employee.search-engine-information-form :model="$product" />
             </div>
 
-            <div class="col-span-3 space-y-6 xl:col-span-1">
+            <div class="col-span-3 xl:col-span-1 space-y-6">
                 <livewire:employee.product.components.product-status :product="$product" />
 
                 <livewire:employee.product.components.product-organization :product="$product" />

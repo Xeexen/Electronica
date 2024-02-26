@@ -2,11 +2,12 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-return new class extends SettingsMigration {
+return new class extends SettingsMigration
+{
     public function up(): void
     {
-        $this->migrator->add('brand.slogan', 'Modernize Your Home, Simplify Your Day with Our Appliances and Gadgets.');
-        $this->migrator->add('brand.short_description', 'Discover a vast selection of top-notch home appliances and electronic gadgets. Elevate your living with innovative, energy-efficient solutions.');
+        $this->migrator->add('brand.slogan', 'Somos tu mejor solucion!.');
+        $this->migrator->add('brand.short_description', 'Hacemos mas faciles tus compras y facturas.');
         $this->migrator->add('brand.logo_path', '');
         $this->migrator->add('brand.favicon_path', '');
         $this->migrator->add('brand.cover_path', '');

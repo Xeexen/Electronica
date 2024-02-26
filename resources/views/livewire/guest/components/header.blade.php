@@ -23,20 +23,21 @@
 
                 <div class="px-4 pt-10 pb-6 space-y-6">
                     <div class="grid items-start grid-cols-1 gap-y-6 gap-x-6">
-
                         <div>
                             <p class="font-medium text-slate-900">
-                                Componentes
+                                Categoria
                             </p>
                             <ul role="list" aria-labelledby="mobile-collection-heading" class="mt-6 ml-3 space-y-6">
                                 <li x-data="{ open: false }">
                                     <span x-on:click="open = !open" class="text-sm font-medium text-slate-900">
-                                        computadores
+                                        Subcategoria
                                     </span>
-                                    <ul x-show="open" role="list" aria-labelledby="computadores-heading"
+                                    <ul x-show="open" role="list" aria-labelledby="-heading"
                                         class="mt-6 ml-3 space-y-6 text-sm sm:mt-4 sm:space-y-4">
                                         <li class="flex">
-                                            <a href="" class="hover:text-slate-800">Computadores</a>
+                                            <a href="" class="hover:text-slate-800">
+                                                Producto
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -44,9 +45,9 @@
                         </div>
                         <div class="flow-root">
                             <a href="" class="block p-2 -m-2 font-medium text-slate-900">
-                                Computacion </a>
+                                Categorias
+                            </a>
                         </div>
-
                     </div>
                 </div>
 
@@ -54,23 +55,24 @@
                     @guest()
                     <div class="flow-root">
                         <a href="{{ route('login') }}" class="block p-2 -m-2 font-medium text-slate-900">
-                            {{ __('Sign in') }}
+                            {{ __('Login') }}
                         </a>
                     </div>
                     <div class="flow-root">
                         <a href="{{ route('register') }}" class="block p-2 -m-2 font-medium text-slate-900">
-                            {{ __('Create account') }}
+                            {{ __('Crear Cuenta') }}
                         </a>
                     </div>
                     @else
                     <div class="flow-root">
                         <a href="{{ route('customer.profile') }}" class="block p-2 -m-2 font-medium text-slate-900">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </a>
                     </div>
                     <div class="flow-root">
-                        <a href="{{ route('customer.orders.list') }}" class="block p-2 -m-2 font-medium text-slate-900">
-                            {{ __('Orders') }}
+                        <a href="{{ route('customer.ordenes.lista') }}"
+                            class="block p-2 -m-2 font-medium text-slate-900">
+                            {{ __('Ordenes') }}
                         </a>
                     </div>
                     <div class="flow-root">
@@ -78,7 +80,7 @@
                             @csrf
                             <a href="{{ route('logout') }}" class="block p-2 -m-2 font-medium text-slate-900"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Salir') }}
                             </a>
                         </form>
                     </div>
@@ -93,14 +95,14 @@
         <div class="bg-sky-700">
             <div class="flex items-center justify-between h-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <p class="text-sm font-medium text-white">
-                    Hola
+
                 </p>
                 <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+
                     <a href="" class="text-sm font-medium text-white hover:text-gray-100">
-                        Computacion
+                        Politicas de Uso
                     </a>
                     <span class="w-px h-6 bg-sky-600/50" aria-hidden="true"></span>
-
                 </div>
             </div>
         </div>
@@ -125,6 +127,7 @@
                     </a>
 
                     {{-- Flyout menus --}}
+                    @foreach ($categorias as $categoria)
                     <div class="hidden lg:ml-8 lg:block lg:self-stretch">
                         <div class="flex justify-center h-full space-x-8">
                             <div x-data="{ open: false }" x-on:keydown.escape="open = false" class="flex">
@@ -133,7 +136,7 @@
                                         class="relative z-10 flex items-center pt-px -mb-px text-sm font-medium transition-colors duration-200 ease-out border-b-2"
                                         x-bind:class="{ 'border-sky-600 text-sky-600': open, 'border-transparent text-slate-700 hover:text-slate-800': !open }"
                                         x-bind:aria-expanded="open.toString()">
-                                        <span>Computacion</span>
+                                        <span>{{ $categoria->categoria }}</span>
                                     </button>
                                 </div>
                                 <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -148,14 +151,21 @@
                                         <div class="px-8 mx-auto max-w-7xl">
                                             <div class="grid grid-cols-5 py-16 text-sm gap-y-10 gap-x-8">
                                                 <div>
-                                                    <p id="Computadores-heading" class="font-medium text-slate-900">
-                                                        Computadores </p>
-                                                    <ul role="list" aria-labelledby="Computadores-heading"
+                                                    <p id="-heading" class="font-medium text-slate-900">
+                                                        {{ $categoria->categoria }} </p>
+                                                    <ul role="list" aria-labelledby="-heading"
                                                         class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                                                        @foreach ($subcategorias as $subcategoria)
+                                                        @if ($subcategoria->categoria_id === $categoria->id)
                                                         <li class="flex">
-                                                            <a href="" class="hover:text-slate-800">
-                                                                Computadora </a>
+                                                            <a href="{{ route('guest.articulos.lista', ['id' => $subcategoria->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria]) }}"
+                                                                class="hover:text-slate-800">
+                                                                {{ $subcategoria->subcategoria }}
+                                                            </a>
                                                         </li>
+                                                        @endif
+                                                        @endforeach
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -163,47 +173,43 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href=""
-                                class="flex items-center text-sm font-medium text-slate-700 hover:text-slate-800">
-                                Computador </a>
-
                         </div>
                     </div>
-
+                    @endforeach
                     <div class="flex items-center justify-end flex-1 lg:ml-auto">
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                             @guest()
                             <a href="{{ route('login') }}"
                                 class="text-sm font-medium text-slate-700 hover:text-slate-800">
-                                {{ __('Sign in') }}
+                                {{ __('Login') }}
                             </a>
                             <span class="w-px h-6 bg-slate-200" aria-hidden="true"></span>
                             <a href="{{ route('register') }}"
                                 class="text-sm font-medium text-slate-700 hover:text-slate-800">
-                                {{ __('Create account') }}
+                                {{ __('Crear Cuenta') }}
                             </a>
                             @else
                             <x-dropdown>
                                 <x-slot:trigger>
                                     <button type="button"
                                         class="flex items-center text-sm font-medium text-slate-700 hover:text-slate-800">
-                                        <span>{{ Auth::user()->name }}</span>
+                                        <span>{{ auth()->user()->name }}</span>
                                         <x-heroicon-m-chevron-down class="ml-1.5 -mr-1 h-5 w-5" />
                                     </button>
                                 </x-slot:trigger>
                                 <x-slot:content>
                                     <x-dropdown-link href="{{ route('customer.profile') }}">
-                                        {{ __('Profile') }}
+                                        {{ __('Perfil') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link href="{{ route('customer.orders.list') }}">
-                                        {{ __('Orders') }}
+                                    <x-dropdown-link href="{{ route('customer.ordenes.lista') }}">
+                                        {{ __('Ordenes') }}
                                     </x-dropdown-link>
                                     <hr class="border-slate-200" />
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                            {{ __('Sign out') }}
+                                            {{ __('Salir') }}
                                         </x-dropdown-link>
                                     </form>
                                 </x-slot:content>
@@ -215,18 +221,18 @@
                         <div class="flex lg:ml-6">
                             <button x-on:click="$dispatch('open-search')"
                                 class="p-2 text-slate-400 hover:text-slate-500">
-                                <span class="sr-only">{{ __('Search') }}</span>
+                                <span class="sr-only">{{ __('Buscar') }}</span>
                                 <x-heroicon-o-magnifying-glass class="w-6 h-6" />
                             </button>
                         </div>
 
                         <!-- Cart -->
                         <div class="flow-root ml-4 lg:ml-6">
-                            <a href="{{ route('guest.cart') }}" class="flex items-center p-2 -m-2 group">
+                            <a href="{{ route('guest.carrito') }}" class="flex items-center p-2 -m-2 group">
                                 <x-heroicon-o-shopping-cart
                                     class="flex-shrink-0 w-6 h-6 text-slate-400 group-hover:text-slate-500" />
                                 <span class="ml-2 text-sm font-medium text-slate-700 group-hover:text-slate-800">{{
-                                    $itemsCount ?? 0 }}</span>
+                                    $items ?? 0 }}</span>
                                 <span class="sr-only">{{ __('items in cart, view cart') }}</span>
                             </a>
                         </div>

@@ -4,10 +4,10 @@
             <x-card>
                 <x-slot:header class="border-b border-slate-200 dark:border-white/10">
                     <h3 class="text-base font-semibold leading-6 text-slate-900 dark:text-slate-200">
-                        {{ __('Administrator account') }}
+                        {{ __('Cuenta de Administrador') }}
                     </h3>
                     <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                        {{ __('Create an administrator account to manage your store.') }}
+                        {{ __('Crea una cuenta de administrador para tu tienda.') }}
                     </p>
                 </x-slot:header>
 
@@ -16,14 +16,14 @@
                         <div>
                             <x-input-label
                                 for="adminNameInput"
-                                :value="__('Name')"
+                                :value="__('Nombre')"
                             />
                             <x-input
                                 wire:model.defer="state.administrator_name"
                                 type="text"
                                 id="adminNameInput"
-                                class="mt-1 block w-full sm:text-sm"
-                                placeholder="{{ __('John Doe') }}"
+                                class="block w-full mt-1 sm:text-sm"
+                                placeholder="{{ __('Tu nombre') }}"
                             />
                             <x-input-error
                                 for="state.administrator_name"
@@ -34,14 +34,14 @@
                         <div>
                             <x-input-label
                                 for="adminEmailInput"
-                                :value="__('Email address')"
+                                :value="__('Email')"
                             />
                             <x-input
                                 wire:model.defer="state.administrator_email"
                                 type="email"
                                 id="adminEmailInput"
-                                class="mt-1 block w-full sm:text-sm"
-                                placeholder="{{ __('john@example.org') }}"
+                                class="block w-full mt-1 sm:text-sm"
+                                placeholder="{{ __('ejemplo@ejemplo.com') }}"
                             />
                             <x-input-error
                                 for="state.administrator_email"
@@ -52,13 +52,13 @@
                         <div>
                             <x-input-label
                                 for="adminPasswordInput"
-                                :value="__('Password')"
+                                :value="__('Contraseña')"
                             />
                             <x-input
                                 wire:model.defer="state.administrator_password"
                                 type="password"
                                 id="adminPasswordInput"
-                                class="mt-1 block w-full sm:text-sm"
+                                class="block w-full mt-1 sm:text-sm"
                                 placeholder="{{ __('********') }}"
                             />
                             <x-input-error
@@ -70,13 +70,13 @@
                         <div>
                             <x-input-label
                                 for="adminPasswordConfirmationInput"
-                                :value="__('Password confirmation')"
+                                :value="__('Confirmar Contraseña')"
                             />
                             <x-input
                                 wire:model.defer="state.administrator_password_confirmation"
                                 type="password"
                                 id="adminPasswordConfirmationInput"
-                                class="mt-1 block w-full sm:text-sm"
+                                class="block w-full mt-1 sm:text-sm"
                                 placeholder="{{ __('********') }}"
                             />
                             <x-input-error
@@ -90,9 +90,9 @@
                 <x-slot:footer>
                     <button
                         type="submit"
-                        class="btn btn-primary block w-full"
+                        class="block w-full btn btn-primary"
                     >
-                        {{ __('Save and continue') }}
+                        {{ __('Guardar y Continuar') }}
                     </button>
                 </x-slot:footer>
             </x-card>

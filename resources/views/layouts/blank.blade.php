@@ -1,66 +1,47 @@
 <!DOCTYPE html>
-<html
-    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-    class="h-full"
-    x-cloak
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full" x-cloak
     x-data="{ theme: $persist('light') }"
-    x-bind:class="{ 'dark': theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) }"
->
-    <head>
-        <meta charset="utf-8">
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        >
-        <meta
-            name="csrf-token"
-            content="{{ csrf_token() }}"
-        >
-        <meta
-            name="robots"
-            content="noindex, nofollow"
-        >
+    x-bind:class="{ 'dark': theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) }">
 
-        <!-- Title -->
-        {{--        <title>{{ isset($title) ? $title . ' - ' . $generalSettings->store_name : $generalSettings->store_name }}</title>--}}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
 
-        {!! SEOMeta::generate() !!}
+    <!-- Title -->
+    {{-- <title>{{ isset($title) ? $title . ' - ' . $generalSettings->store_name : $generalSettings->store_name }}
+    </title>--}}
 
-        {!! OpenGraph::generate() !!}
+    {!! SEOMeta::generate() !!}
 
-        {!! Twitter::generate() !!}
+    {!! OpenGraph::generate() !!}
 
-        <!-- Favicon -->
-        <link
-            rel="icon"
-            href="{{ $brandSettings->favicon_path ? Storage::url($brandSettings->favicon_path) : asset('img/favicon.png') }}"
-        >
+    {!! Twitter::generate() !!}
 
-        <!-- Fonts -->
-        <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-        >
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin
-        >
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        >
+    <!-- Favicon -->
+    <link rel="icon"
+        href="{{ $brandSettings->favicon_path ? Storage::url($brandSettings->favicon_path) : asset('img/favicon.png') }}">
 
-        <!-- Styles -->
-        @livewireStyles
-        @vite('resources/css/guest.css')
-    </head>
-    <body class="antialiased bg-white font-sans h-full dark:bg-slate-900">
-        {{ $slot }}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Scripts -->
-        @livewireScripts
-        @vite('resources/js/guest.js')
-        @stack('scripts')
-    </body>
+    <!-- Styles -->
+    @livewireStyles
+    @vite('resources/css/guest.css')
+</head>
+
+<body class="h-full font-sans antialiased bg-white dark:bg-slate-900">
+    {{ $slot }}
+
+    <!-- Scripts -->
+    @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    @vite('resources/js/guest.js')
+    @stack('scripts')
+</body>
+
 </html>
