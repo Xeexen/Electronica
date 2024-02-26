@@ -2,15 +2,20 @@
 
 namespace App\Http\Livewire\Components;
 
-use App\Models\Employee;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Employee;
+use App\Models\Producto;
+use App\Models\Categoria;
+use App\Models\Subcategoria;
 
 class Spotlight extends Component
 {
     public bool $searchFromAdmin = false;
 
     public string $query = '';
+
+    public $categorias, $subcategorias;
 
     public function mount()
     {
@@ -27,14 +32,13 @@ class Spotlight extends Component
         $products = [];
 
         if ($this->query) {
-            $products = Product::query()
-                ->select('id', 'name', 'slug', 'price')
-                ->with('media')
-                ->where('name', 'like', "%{$this->query}%");
+            $products = Producto::query()
+                ->select('id', 'nombre', 'precio', 'categoria', 'subcategoria')
+                ->where('nombre', 'like', "%{$this->query}%");
 
-            if (!$this->user instanceof Employee) {
-                $products->published()->active();
-            }
+            $this->categorias = Categoria::whereIn('id', $products->pluck('categoria'))->get();
+
+            $this->subcategorias = Subcategoria::whereIn('id', $products->pluck('subcategoria'))->get();
 
             $products = $products->get();
         }

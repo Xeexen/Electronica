@@ -59,9 +59,10 @@
                     <div class="flex items-center mt-8 space-x-3">
                         <div>
                             <x-input-label for="cantidad" :value="__('Cantidad')" class="sr-only" />
-                            <x-input wire:model.lazy="carrito.cantidad" type="number" id="cantidad"
-                                class="py-3 text-sm text-center w-28 sm:text-base show-spinners" :min="1" :max="$producto->unidades" />
-                            <x-input-error for="addToCart.quantity" />
+                            <x-input wire:model.defer="carrito.cantidad" type="number" id="cantidad"
+                                class="py-3 text-sm text-center w-28 sm:text-base show-spinners" :min="1"
+                                :max="$producto->unidades" />
+                            <x-input-error for="carrito.cantidad" />
                         </div>
                         <div class="flex w-full">
                             <button wire:loading.delay.attr="disabled" class="w-full btn btn-primary btn-xl"
@@ -85,15 +86,8 @@
                                 aria-controls="tab-panel-description" role="tab" type="button">
                                 {{ __('Descripcion del Producto') }}
                             </button>
-                        </li>   
-                        <li>
-                            <button x-bind="tab" id="tab-reviews"
-                                class="py-6 text-sm font-medium border-b-2 whitespace-nowrap"
-                                :class="isSelected($el.id) ? 'border-sky-600 text-sky-600' : 'border-transparent text-slate-700 hover:text-slate-800 hover:border-slate-300'"
-                                aria-controls="tab-panel-reviews" role="tab" type="button">
-                                {{ __('Customer Reviews') }}
-                            </button>
                         </li>
+
                     </ul>
                 </div>
 
@@ -106,14 +100,9 @@
                             {!! $producto->descripcion !!}
                         </div>
                     </div>
-                    <div x-cloak x-show="isSelected($id('tabs', whichChild($el, $el.parentElement)))"
-                        id="tab-panel-reviews" class="-mb-10" role="tabpanel" tabindex="0"
-                        aria-labelledby="tab-reviews">
-                        <h3 class="sr-only">{{ __('Customer Reviews') }}</h3>
-                    </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </main>
 
     @push('scripts')
