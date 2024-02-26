@@ -24,7 +24,7 @@
                     @foreach($ordenes as $orden)
                     <div class="bg-white border-t border-b shadow-sm border-slate-200 sm:rounded-lg sm:border">
                         <h2 class="sr-only">
-                            {{ __('Order placed on') }}
+                            {{ __('Creado el') }}
                             <time datetime="{{ $orden->created_at->format('Y-m-d') }}">{{
                                 $orden->created_at->toFormattedDateString() }}</time>
                         </h2>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="hidden sm:block">
                                     <dt class="font-medium text-slate-900">
-                                        {{ __('Date placed') }}
+                                        {{ __('Fecha de Creacion') }}
                                     </dt>
                                     <dd class="mt-1 text-slate-500">
                                         <time datetime="{{ $orden->created_at->format('Y-m-d') }}">{{
@@ -51,7 +51,7 @@
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt class="font-medium text-slate-900">{{ __('Total amount') }}</dt>
+                                    <dt class="font-medium text-slate-900">{{ __('Total Orden') }}</dt>
                                     <dd class="mt-1 font-medium text-slate-900">
                                         <x-money :amount="$orden->total" :currency="config('app.currency')" />
                                     </dd>
@@ -68,18 +68,18 @@
                                     </x-slot:trigger>
                                     <x-slot:content>
                                         <x-dropdown-link href="{{ route('customer.orders.detail', $orden) }}">
-                                            {{ __('View') }}
+                                            {{ __('Ver') }}
                                         </x-dropdown-link>
                                     </x-slot:content>
                                 </x-dropdown>
                             </div>
 
-                            <div class="hidden lg:col-span-2 lg:flex lg:items-center lg:justify-end lg:space-x-4">
+                            {{-- <div class="hidden lg:col-span-2 lg:flex lg:items-center lg:justify-end lg:space-x-4">
                                 <a href="" class="btn btn-outline-primary">
                                     <span>{{ __('View Order') }}</span>
                                     <span class="sr-only">{{ $orden->id }}</span>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <!-- Products -->

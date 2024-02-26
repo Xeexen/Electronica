@@ -113,6 +113,7 @@ class FacturasCrear extends Component
 
     public function clienteCargar()
     {
+        $this->cliente = Persona::find($this->factura->cliente_id);
     }
 
     public function save()

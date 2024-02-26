@@ -41,24 +41,26 @@
                             <div>
                                 <x-input-label for="establecimiento" :value="__('Establecimiento')" />
                                 <x-input wire:model.defer="factura.establecimiento" type="text" id="name"
-                                    class="block w-full mt-1 sm:text-sm" :placeholder="__('Ingresa el nombre')" />
+                                    class="block w-full mt-1 sm:text-sm"
+                                    :placeholder="__('Ingresa el establecimiento')" />
                                 <x-input-error for="nombre" class="mt-2" />
                             </div>
                             <div>
                                 <x-input-label for="puntoEmision" :value="__('Punto de Emision')" />
                                 <x-input wire:model.defer="factura.puntoEmision" type="text" id="name"
-                                    class="block w-full mt-1 sm:text-sm" :placeholder="__('Ingresa el nombre')" />
+                                    class="block w-full mt-1 sm:text-sm"
+                                    :placeholder="__('Ingresa el punto de emision')" />
                                 <x-input-error for="nombre" class="mt-2" />
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <x-input-label for="cliente" :value="__('Cliente:')" />
-                                <x-select wire:model.defer="factura.cliente_id" wire:change='clienteCargar' id="subcategoria"
-                                    class="block w-full mt-1 sm:text-sm">
-                                    <option value="">{{ __('Selecione un Cliente') }}</option>
-                                    @foreach ($clientes as $cliente)
-                                    <option value="{{ $cliente->id}}">{{ $cliente->nombre}}</option>
+                                <x-select wire:model.defer="factura.cliente_id" wire:change='clienteCargar'
+                                    id="subcategoria" class="block w-full mt-1 sm:text-sm">
+                                    <option value="" selected>{{ __('Selecione un Cliente') }}</option>
+                                    @foreach ($clientes as $persona)
+                                    <option value="{{ $persona->id}}">{{ $persona->nombre}}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -85,24 +87,28 @@
                     <x-slot:content class="grid grid-cols-1 gap-6">
                         <div>
                             <x-input-label for="nombre" :value="__('Nombre')" />
-                            <x-input wire:model="cliente.nombre" type="text" id="nombre"
-                                class="block w-full mt-1 sm:text-sm" />
+                            <label id="nombre" class="block w-full mt-1 sm:text-sm">{{ $cliente ? $cliente->nombre :
+                                ''}}</label>
                         </div>
                         <div>
                             <x-input-label for="documento" :value="__('Documento')" />
-                            <x-input type="text" wire:model="documento" id="documento" class="block w-full mt-1 sm:text-sm" />
+                            <label id="documento" class="block w-full mt-1 sm:text-sm">{{ $cliente ? $cliente->documento
+                                :
+                                ''}}</label>
                         </div>
                         <div>
                             <x-input-label for="email" :value="__('Email')" />
-                            <x-input type="text" id="name" wire:model="nombre" class="block w-full mt-1 sm:text-sm" />
-                            <x-input-error for="nombre" class="mt-2" />
+                            <label id="email" class="block w-full mt-1 sm:text-sm">{{ $cliente ? $cliente->email :
+                                ''}}</label>
                         </div>
                         <div>
                             <x-input-label for="telefono" :value="__('Telefono')" />
-                            <x-input type="text" id="name" wire:model="telefono" class="block w-full mt-1 sm:text-sm" />
+                            <label id="telefono" class="block w-full mt-1 sm:text-sm">{{ $cliente ? $cliente->telefono :
+                                ''}}</label>
                         </div>
                     </x-slot:content>
                 </x-card>
+
             </div>
         </div>
     </div>
@@ -236,7 +242,7 @@
                                                         <div class="flex flex-col max-w-xs ml-4">
                                                             <div
                                                                 class="font-medium text-slate-900 hover:text-sky-600 truncate ... dark:text-slate-200 dark:hover:text-sky-400">
-                                                                <label id="precio" class="block w-full mt-1">
+                                                                <label id="subtotal" class="block w-full mt-1">
                                                                     {{ $items[$index]['subtotal'] }}
                                                                 </label>
                                                             </div>
@@ -295,16 +301,7 @@
                                                         {{ $subtotal_12 ? $subtotal_12 : '' }}
                                                     </th>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="col"
-                                                        class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ __('Subtotal 0%') }}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">
-                                                        {{ $subtotal_0 ? $subtotal_0 : '' }}
-                                                    </th>
-                                                </tr>
+
                                                 <tr>
                                                     <th scope="col"
                                                         class="px-3 py-3 text-xs font-medium tracking-wider text-left uppercase sm:px-6 text-slate-500 dark:text-slate-400">

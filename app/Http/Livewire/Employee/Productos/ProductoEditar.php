@@ -50,7 +50,7 @@ class ProductoEditar extends Component
                 $this->imagen->storeAs('public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria, $customFileName);
 
                 $webpImage = Image::make(storage_path('app/public/productos/' . $this->producto->categoria . '/' . $this->producto->subcategoria . '/' . $customFileName));
-                $webpImage->resize(300, 300, function ($constraint) {
+                $webpImage->resize(25, 25, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
