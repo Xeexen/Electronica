@@ -15,7 +15,6 @@
                 </p>
             </div>
         </div>
-
         <div class="mt-16">
             <h2 class="sr-only">{{ __('Ordenes Recientes') }}</h2>
             <div class="mx-auto max-w-7xl sm:px-2 lg:px-8">
@@ -43,7 +42,7 @@
                                 </div>
                                 <div class="hidden sm:block">
                                     <dt class="font-medium text-slate-900">
-                                        {{ __('Date placed') }}
+                                        {{ __('Fecha Ordenada') }}
                                     </dt>
                                     <dd class="mt-1 text-slate-500">
                                         <time datetime="{{ $orden->created_at->format('Y-m-d') }}">{{
@@ -66,19 +65,9 @@
                                             id="menu-0-button" aria-expanded="false" aria-haspopup="true">
                                         </button>
                                     </x-slot:trigger>
-                                    <x-slot:content>
-                                        <x-dropdown-link href="{{ route('customer.orders.detail', $orden) }}">
-                                            {{ __('View') }}
-                                        </x-dropdown-link>
-                                    </x-slot:content>
                                 </x-dropdown>
                             </div>
-
                             <div class="hidden lg:col-span-2 lg:flex lg:items-center lg:justify-end lg:space-x-4">
-                                <a href="" class="btn btn-outline-primary">
-                                    <span>{{ __('View Order') }}</span>
-                                    <span class="sr-only">{{ $orden->id }}</span>
-                                </a>
                             </div>
                         </div>
 
@@ -89,7 +78,6 @@
                     </div>
                     @endforeach
                     @endif
-
                     <div class="mt-8">
                     </div>
                 </div>

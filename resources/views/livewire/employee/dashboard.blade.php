@@ -273,7 +273,6 @@
                         }" class="-mx-3 -mt-2 -mb-3">
                         <div x-ref="chartElement"></div>
                     </div>
-                    asdasdawe
                 </x-slot>
             </x-card>
         </div>
