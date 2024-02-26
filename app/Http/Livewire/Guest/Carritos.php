@@ -35,7 +35,11 @@ class Carritos extends Component
         }
     }
 
+    public function borrar($id){
+        Carrito::find($id)->delete();
+        $this->mount();
 
+    }
 
     public function render()
     {
