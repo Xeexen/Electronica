@@ -16,7 +16,7 @@ class ProductoDetalle extends Component
     public function rules()
     {
         return [
-            'carrito.cantidad' => 'required',
+            'carrito.cantidad' => 'required|numeric',
         ];
     }
     public function mount($id)
