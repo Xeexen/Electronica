@@ -18,7 +18,7 @@
                     </div>
                 </li>
                 <li class="text-sm truncate">
-                    <a href="{{ route('guest.collections.list') }}" aria-current="page"
+                    <a href="{{ route('guest.categorias.lista') }}" aria-current="page"
                         class="font-medium text-slate-500 hover:text-slate-600">
                         {{ $categoria->categoria }}
                     </a>
@@ -38,7 +38,7 @@
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($subcategorias as $subcategoria)
                 <div class="overflow-hidden rounded-lg group aspect-w-2 aspect-h-1 sm:relative sm:h-full">
-                    <img src="{{ asset('storage/productos/'.$subcategoria->id.'/categoria.webp') }}"
+                    <img src="{{ asset('storage/productos/'.$categoria->id. '/'.$subcategoria->id.'/subcategoria.jpg') }}"
                         alt="{{ $subcategoria->subcategoria }}"
                         class="object-cover object-center group-hover:opacity-75 sm:absolute sm:inset-0 sm:h-full sm:w-full">
                     <div aria-hidden="true"

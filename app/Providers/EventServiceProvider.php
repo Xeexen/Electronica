@@ -33,9 +33,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        Login::class => [
-            SyncCartOnLogin::class,
-        ],
         OrderCreated::class => [
             SendNewOrderNotification::class,
         ],
@@ -46,9 +43,7 @@ class EventServiceProvider extends ServiceProvider
             UpdateOrderShippingStatus::class,
             SendShipmentConfirmation::class,
         ],
-        ShipmentDeleted::class => [
-            UpdateOrderShippingStatus::class,
-        ],
+       
         RefundCreated::class => [
             UpdateOrderPaymentStatus::class,
             SendRefundNotification::class,

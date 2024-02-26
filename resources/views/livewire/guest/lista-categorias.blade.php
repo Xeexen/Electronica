@@ -38,7 +38,7 @@
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($categorias as $categoria)
                 <div class="overflow-hidden rounded-lg group aspect-w-2 aspect-h-1 sm:relative sm:h-full">
-                    <img src="{{ asset('storage/productos/'.$categoria->id.'/categoria.webp') }}"
+                    <img src="{{ asset('storage/productos/'.$categoria->id.'/categoria.jpg') }}"
                         alt="{{ $categoria->categoria }}"
                         class="object-cover object-center group-hover:opacity-75 sm:absolute sm:inset-0 sm:h-full sm:w-full">
                     <div aria-hidden="true"

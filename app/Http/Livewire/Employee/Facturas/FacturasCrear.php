@@ -15,7 +15,7 @@ class FacturasCrear extends Component
     use LivewireAlert;
 
     public Factura $factura;
-    public $productos, $clientes, $items, $empresa;
+    public $productos, $clientes, $items, $empresa, $cliente;
     public $nombre, $precio, $cantidad, $descuento, $iva, $subtotal, $descuentoTotal, $subtotal_12, $ivaTotal, $subtotal_0, $subtotales, $total;
 
     public function rules()
@@ -109,6 +109,10 @@ class FacturasCrear extends Component
         }
         $this->items = $nuevasFilas;
         $this->calcSubtotal();
+    }
+
+    public function clienteCargar()
+    {
     }
 
     public function save()

@@ -54,7 +54,7 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <x-input-label for="cliente" :value="__('Cliente:')" />
-                                <x-select wire:model.defer="factura.cliente_id" id="subcategoria"
+                                <x-select wire:model.defer="factura.cliente_id" wire:change='clienteCargar' id="subcategoria"
                                     class="block w-full mt-1 sm:text-sm">
                                     <option value="">{{ __('Selecione un Cliente') }}</option>
                                     @foreach ($clientes as $cliente)
@@ -85,21 +85,21 @@
                     <x-slot:content class="grid grid-cols-1 gap-6">
                         <div>
                             <x-input-label for="nombre" :value="__('Nombre')" />
-                            <x-input wire:model.defer="factura.puntoEmision" type="text" id="nombre"
+                            <x-input wire:model="cliente.nombre" type="text" id="nombre"
                                 class="block w-full mt-1 sm:text-sm" />
                         </div>
                         <div>
                             <x-input-label for="documento" :value="__('Documento')" />
-                            <x-input type="text" id="documento" class="block w-full mt-1 sm:text-sm" />
+                            <x-input type="text" wire:model="documento" id="documento" class="block w-full mt-1 sm:text-sm" />
                         </div>
                         <div>
                             <x-input-label for="email" :value="__('Email')" />
-                            <x-input type="text" id="name" class="block w-full mt-1 sm:text-sm" />
+                            <x-input type="text" id="name" wire:model="nombre" class="block w-full mt-1 sm:text-sm" />
                             <x-input-error for="nombre" class="mt-2" />
                         </div>
                         <div>
                             <x-input-label for="telefono" :value="__('Telefono')" />
-                            <x-input type="text" id="name" class="block w-full mt-1 sm:text-sm" />
+                            <x-input type="text" id="name" wire:model="telefono" class="block w-full mt-1 sm:text-sm" />
                         </div>
                     </x-slot:content>
                 </x-card>

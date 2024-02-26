@@ -77,7 +77,7 @@
                     {{ __('No hay productos para esta subcategoria.') }}
                 </p>
                 <div class="mt-6">
-                    <a href="{{ route('guest.products.list') }}" class="btn btn-primary">
+                    <a href="{{ route('guest.categorias.lista') }}" class="btn btn-primary">
                         <x-heroicon-m-arrow-left class="-ml-0.5 mr-1.5 h-5 w-5" />
                         {{ __('Volver a la Tienda') }}
                     </a>
@@ -94,13 +94,13 @@
                     <div
                         class="relative flex flex-col overflow-hidden transition duration-150 bg-white border rounded-lg group border-slate-200 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-300/50">
                         <div class="aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none">
-
                             <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}"
                                 class="object-cover object-center w-full h-full sm:h-full sm:w-full">
                         </div>
                         <div class="flex flex-col items-center flex-1 p-4 space-y-2 text-center">
                             <h3 class="text-sm font-medium text-slate-900 line-clamp-2">
-                                <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}">
+                                <a
+                                    href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}">
                                     <span aria-hidden="true" class="absolute inset-0"></span>
                                     {{ $producto->nombre }}
                                 </a>

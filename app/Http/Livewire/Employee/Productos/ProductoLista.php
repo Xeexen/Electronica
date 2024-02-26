@@ -14,6 +14,13 @@ class ProductoLista extends Component
         $this->productos = Producto::all();
     }
 
+    public function destroy($id)
+    {
+        Producto::find($id)->delete();
+
+        $this->mount();
+    }
+
     public function render()
     {
         return view('livewire.employee.productos.producto-lista')->layout('layouts.admin');

@@ -20,8 +20,8 @@
                 <x-slot:content>
                     <div class="flex items-center justify-between">
                         <dl>
-                            <dt class="text-sm font-medium truncate text-slate-500">{{ __('Nuevas Ordenes') }}</dt>
-                            <dd class="mt-1 text-3xl font-semibold text-sky-500">sis</dd>
+                            <dt class="text-sm font-medium truncate text-slate-500">{{ __('Ordenes') }}</dt>
+                            <dd class="mt-1 text-3xl font-semibold text-sky-500">{{ $ordenes->count() }}</dd>
                         </dl>
                         <div x-data="{
                                 init() {
@@ -81,7 +81,7 @@
                     <div class="flex items-center justify-between">
                         <dl>
                             <dt class="text-sm font-medium truncate text-slate-500">{{ __('Ventas') }}</dt>
-                            <dd class="mt-1 text-3xl font-semibold text-sky-500"></dd>
+                            <dd class="mt-1 text-3xl font-semibold text-sky-500">{{ $facturas->count() }}</dd>
                         </dl>
                         <div x-data="{
                                 init() {
@@ -141,7 +141,7 @@
                     <div class="flex items-center justify-between">
                         <dl>
                             <dt class="text-sm font-medium truncate text-slate-500">{{ __('Clientes') }}</dt>
-                            <dd class="mt-1 text-3xl font-semibold text-sky-500"></dd>
+                            <dd class="mt-1 text-3xl font-semibold text-sky-500">{{$clientes->count()}}</dd>
                         </dl>
                         <div x-data="{
                                 init() {

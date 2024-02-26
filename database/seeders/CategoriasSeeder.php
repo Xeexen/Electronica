@@ -35,7 +35,6 @@ class CategoriasSeeder extends Seeder
             ["subcategoria" => "Convertidores", "categoria_id" => 2],
             ["subcategoria" => "Accesorios", "categoria_id" => 2],
             ["subcategoria" => "Microfonos", "categoria_id" => 2],
-            ["subcategoria" => "Telefonos", "categoria_id" => 3],
             ["subcategoria" => "Sirenas", "categoria_id" => 3],
             ["subcategoria" => "Alarmas", "categoria_id" => 3],
             ["subcategoria" => "Cerco Eléctrico inteligente", "categoria_id" => 3],

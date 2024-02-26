@@ -8,6 +8,6 @@ class ProductoEditar extends Component
 {
     public function render()
     {
-        return view('livewire.employee.productos.producto-editar');
+        return view('livewire.employee.productos.producto-editar')->layout('layouts.admin');
     }
 }
