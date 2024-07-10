@@ -1,6 +1,6 @@
 <div>
     <form wire:submit.prevent="save">
-        <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-slate-900/10 pb-12 md:grid-cols-3">
+        <div class="grid grid-cols-1 pb-12 border-b gap-x-8 gap-y-10 border-slate-900/10 md:grid-cols-3">
             <div>
                 <h2 class="text-base font-semibold leading-7 text-slate-900 dark:text-slate-200">
                     {{ __('Profile') }}
@@ -16,13 +16,13 @@
                             <img
                                 src="{{ $avatarFile->temporaryUrl() }}"
                                 alt=""
-                                class="h-24 w-24 flex-none rounded-lg bg-slate-100 object-cover dark:bg-slate-800"
+                                class="flex-none object-cover w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-800"
                             />
                         @else
                             <img
                                 src="{{ auth()->user()->getFirstMediaUrl('avatar') }}"
                                 alt=""
-                                class="h-24 w-24 flex-none rounded-lg bg-slate-100 object-cover dark:bg-slate-800"
+                                class="flex-none object-cover w-24 h-24 rounded-lg bg-slate-100 dark:bg-slate-800"
                             >
                         @endif
                         <div x-data>
@@ -58,7 +58,7 @@
                         wire:model.defer="state.name"
                         type="text"
                         id="nameInput"
-                        class="mt-1 block w-full sm:text-sm"
+                        class="block w-full mt-1 sm:text-sm"
                     />
                     <x-input-error
                         for="state.name"
@@ -74,7 +74,7 @@
                         wire:model.defer="state.email"
                         type="email"
                         id="emailInput"
-                        class="mt-1 block w-full sm:text-sm"
+                        class="block w-full mt-1 sm:text-sm"
                     />
                     <x-input-error
                         for="state.email"
@@ -90,7 +90,7 @@
                         wire:model.defer="state.website"
                         type="text"
                         id="websiteInput"
-                        class="mt-1 block w-full sm:text-sm"
+                        class="block w-full mt-1 sm:text-sm"
                         placeholder="https://www.example.org"
                     />
                     <x-input-error
@@ -106,7 +106,7 @@
                     <x-textarea
                         wire:model.defer="state.bio"
                         id="bioInput"
-                        class="mt-1 block w-full sm:text-sm"
+                        class="block w-full mt-1 sm:text-sm"
                         :placeholder="__('Write a few sentences about yourself')"
                     />
                 </div>
