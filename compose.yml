@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: electronica
+    image: "postgres:latest"
+    environment:
+      - "POSTGRES_DB=electronica"
+      - "POSTGRES_PASSWORD=secret"
+      - "POSTGRES_USER=myuser"
+    ports:
+      - "5432:5432"
