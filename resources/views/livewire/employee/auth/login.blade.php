@@ -53,10 +53,10 @@
 
                 <div class="text-center mb-5 md:mb-7">
                     <h2 class="text-3xl font-medium tracking-tight text-slate-800 dark:text-slate-100">
-                        {{ __('Welcome back') }}
+                        {{ __('Bienvenido de vuelta') }}
                     </h2>
                     <p class="mt-2 text-slate-600 dark:text-slate-400">
-                        {{ __('Please enter your email and password to continue.') }}
+                        {{ __('Porfavor ingresa tu correo y tu contraseña para continuar') }}
                     </p>
                 </div>
 
@@ -78,7 +78,7 @@
                         <div>
                             <x-input-label
                                 for="email"
-                                :value="__('Email address')"
+                                :value="__('Correo Electronico')"
                             />
                             <x-input
                                 wire:model.defer="email"
@@ -100,7 +100,7 @@
                         <div>
                             <x-input-label
                                 for="password"
-                                :value="__('Password')"
+                                :value="__('Contraseña')"
                             />
                             <x-input
                                 wire:model.defer="password"
@@ -147,7 +147,7 @@
                                 type="submit"
                                 class="btn btn-primary block w-full"
                             >
-                                {{ __('Sign in') }}
+                                {{ __('Login') }}
                             </button>
                         </div>
                     </fieldset>
