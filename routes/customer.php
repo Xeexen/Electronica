@@ -14,5 +14,4 @@ Route::group([
 ], function () {
     Route::get('/profile', \App\Http\Livewire\Customer\Profile\ProfileManager::class)->name('profile');
     Route::get('/ordenes', OrdenLista::class)->name('ordenes.lista');
-    Route::get('/orders/{order}', \App\Http\Livewire\Customer\Order\OrderDetail::class)->name('orders.detail');
 });

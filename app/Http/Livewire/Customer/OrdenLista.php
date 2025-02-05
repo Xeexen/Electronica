@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdenLista extends Component
 {
-    public $ordenes, $persona;
+    public $ordenes;
+    public $persona;
 
     public function mount()
     {

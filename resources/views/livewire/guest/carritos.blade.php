@@ -14,7 +14,7 @@
                 </p>
 
                 <div class="mt-6">
-                    <a href="{{ route('guest.products.list') }}" class="btn btn-primary">
+                    <a href="{{ route('guest.categorias.lista') }}" class="btn btn-primary">
                         {{ __('Continua Comprando') }}
                     </a>
                 </div>
@@ -30,7 +30,7 @@
                         {{ __('Items en tu carrito:') }}
                     </h2>
 
-                    <ul role="list" class="border-t border-b divide-y divide-slate-200 border-slate-200">
+                    <ul class="border-t border-b divide-y divide-slate-200 border-slate-200">
                         @foreach($carrito as $carro)
                         @foreach ($productos as $producto)
                         @if ($producto->id === $carro->producto_id)
@@ -38,8 +38,8 @@
                         <li class="flex py-6">
                             <div class="flex-shrink-0 border rounded-md border-slate-200">
                                 @if($producto->imagen)
-                                <img class='object-cover object-center w-24 h-24 rounded-md sm:h-32 sm:w-32' src="{{ asset($producto->imagen) }}"></img>
-                                
+                                <img class='object-cover object-center w-24 h-24 rounded-md sm:h-32 sm:w-32' src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}">
+
                                 @else
                                 <div class="relative w-24 h-24 rounded-md bg-slate-100 sm:h-32 sm:w-32">
                                     <x-heroicon-o-camera
@@ -56,7 +56,7 @@
                                                 @if ($categoria->id == $producto->categoria)
                                                 @foreach ($subcategorias as $subcategoria)
                                                 @if ($subcategoria->id == $producto->subcategoria)
-                                                <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' => 
+                                                <a href="{{ route('guest.producto.detalle', ['id' => $producto->id, 'categoria' =>
                                                             $categoria->categoria, 'subcategoria' => $subcategoria->subcategoria, 'producto' => $producto->nombre]) }}"
                                                     class="font-medium text-slate-700 hover:text-slate-800">
                                                     {{ $producto->nombre }}

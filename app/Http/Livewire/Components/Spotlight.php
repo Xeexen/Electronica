@@ -15,16 +15,17 @@ class Spotlight extends Component
 
     public string $query = '';
 
-    public $categorias, $subcategorias;
+    public $categorias;
+    public $subcategorias;
 
     public function mount()
     {
-        $this->searchFromAdmin = request()->routeIs('employee.*');
+        $this->searchFromAdmin = request() ? request()->routeIs('employee.*') : false;
     }
 
     public function getUserProperty()
     {
-        return \Auth::user();
+        return \Illuminate\Support\Facades\Auth::user();
     }
 
     public function getProductsProperty()

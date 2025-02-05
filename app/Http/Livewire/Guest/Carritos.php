@@ -10,7 +10,11 @@ use App\Models\Subcategoria;
 
 class Carritos extends Component
 {
-    public $carrito, $categorias, $subcategorias, $productos, $total;
+    public $carrito;
+    public $categorias;
+    public $subcategorias;
+    public $productos;
+    public $total;
 
     public function mount()
     {
@@ -22,7 +26,6 @@ class Carritos extends Component
 
         $this->subcategorias = Subcategoria::whereIn('id', $this->productos->pluck('subcategoria'))->get();
 
-        // dd($this->categorias);
         $this->total = 0;
 
         foreach ($this->carrito as $carro) {
