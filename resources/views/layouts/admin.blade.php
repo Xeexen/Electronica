@@ -58,10 +58,10 @@
                             <img src="{{ $brandSettings->logo_path ? Storage::url($brandSettings->logo_path) : asset('img/logo.png') }}"
                                 alt="{{ config('app.name') }}" class="w-auto h-8">
                         </div>
-                        <nav class="flex flex-col flex-1">
-                            <ul role="list" class="flex flex-col flex-1 gap-y-7">
+                        <nav class="flex flex-col flex-1" aria-label="Main navigation">
+                            <ul class="flex flex-col flex-1 gap-y-7">
                                 <li>
-                                    <ul role="list" class="-mx-2 space-y-1">
+                                    <ul class="-mx-2 space-y-1">
                                         <li>
                                             <a href="{{ route('employee.dashboard') }}" @class(['group flex gap-x-3
                                                 rounded-md p-2 text-sm leading-6
